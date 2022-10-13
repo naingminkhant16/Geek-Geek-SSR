@@ -10,7 +10,9 @@
 </head>
 
 <body>
+    {{-- @auth --}}
     <x-nav />
+    {{-- @endauth --}}
     <div>
         {{$slot}}
     </div>
