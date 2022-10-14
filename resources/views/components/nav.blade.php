@@ -28,7 +28,10 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled">Disabled</a>
+                    <form action="{{route('logout')}}" method="POST">
+                        @csrf
+                        <button type="submit" class="nav-link">Logout</button>
+                    </form>
                 </li>
             </ul>
             <form class="d-flex" role="search">
