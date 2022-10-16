@@ -23,7 +23,7 @@ return new class extends Migration
             $table->enum('is_admin', [0, 1])->default(0);
             $table->string('profile')->default('https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png');
             $table->text('bio')->nullable();
-            $table->date('data_of_birth')->nullable();
+            $table->date('date_of_birth')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
