@@ -11,17 +11,20 @@
             <hr class="text-white">
             <form action="{{route('attemptLogin')}}" method="POST" class="mt-4">
                 @csrf
-                <x-input label="Your Geek's Email" name="email" :value="old('email')" error="email">
-                </x-input>
-                <x-input label="Your Geek's Password" name="password" error="password" type='password'></x-input>
+                <x-input label="Your Geek's Email" name="email" :value="old('email')" error="email" />
+
+                <x-input label="Your Geek's Password" name="password" error="password" type='password' />
+
                 <div class="mb-3">
-                    <x-button label="Login" color="primary"></x-button>
+                    <x-button label="Login" color="primary" />
                 </div>
             </form>
             <div class="text-center">
                 <small class="text-white">No Account? <a href="{{route('register')}}" class="text-primary">Register</a>
                     Now.</small>
             </div>
+            <hr class="text-white">
+            <x-oauth />
         </div>
     </div>
 </x-layout>

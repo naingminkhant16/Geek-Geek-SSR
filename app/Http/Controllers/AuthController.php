@@ -54,7 +54,7 @@ class AuthController extends Controller
             'date_of_birth' => 'required|date|before:today',
         ]);
 
-        $formData['username'] = uniqid($formData['name']);
+        $formData['username'] = $formData['name'];
         $formData['password'] = Hash::make($formData['password']);
 
         $user = User::create($formData);

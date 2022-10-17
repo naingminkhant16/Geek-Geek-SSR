@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\OAuthController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -15,6 +16,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//OAuth Routes
+//google
+Route::get('/auth/redirect/google', [OAuthController::class, 'googleRedirect'])->name('googleRedirect');
+Route::get('/auth/callback/google', [OAuthController::class, 'googleCallback']);
+
+//github
+Route::get('/auth/redirect/github', [OAuthController::class, 'githubRedirect'])->name('githubRedirect');
+Route::get('/auth/callback/github', [OAuthController::class, 'githubCallback']);
 
 //Auth Routes
 Route::middleware(['auth'])->group(function () {
