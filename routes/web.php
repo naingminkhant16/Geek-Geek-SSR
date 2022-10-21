@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\OAuthController;
+use App\Http\Controllers\PostController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -25,13 +27,20 @@ Route::get('/auth/callback/google', [OAuthController::class, 'googleCallback']);
 Route::get('/auth/redirect/github', [OAuthController::class, 'githubRedirect'])->name('githubRedirect');
 Route::get('/auth/callback/github', [OAuthController::class, 'githubCallback']);
 
+
 //Auth Routes
 Route::middleware(['auth'])->group(function () {
-    Route::get('/', function () {
-        return view('Auth.index');
-    })->name('home');
+    Route::get('/', [PostController::class, 'index'])->name('home');
 
+    //posts
+    Route::resource('/posts', PostController::class);
+    Route::post('/posts/like/{post}', [PostController::class, 'handleLikePost'])->name('posts.like');
+
+    //logout
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    //comments
+    Route::post('/comments/{post}', [CommentController::class, 'store'])->name('comments.store');
 });
 
 //Public Routes

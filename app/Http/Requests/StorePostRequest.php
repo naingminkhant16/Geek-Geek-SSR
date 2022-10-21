@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class StorePostRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class StorePostRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return Auth::check();
     }
 
     /**
@@ -24,7 +25,9 @@ class StorePostRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'status' => 'required|min:5|max:1000',
+            'photos' => "nullable",
+            'photos.*' => "nullable|mimes:png,jpeg,jpg|max:1024|file"
         ];
     }
 }

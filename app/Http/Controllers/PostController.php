@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
+use App\Models\Like;
 use App\Models\Post;
+use App\Models\PostPhoto;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -15,7 +18,14 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        //need to show other users' posts who user follow
+        $followers_ids = Auth::user()->followings->map(function ($user) {
+            return $user->id;
+        });
+
+        $posts = Post::whereIn('user_id', [...$followers_ids, Auth::id()])->latest()->get();
+
+        return view('Auth.index', ['posts' => $posts]);
     }
 
     /**
@@ -25,7 +35,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('Auth.post-create');
     }
 
     /**
@@ -36,7 +46,31 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        //
+        //create post
+        $post = Post::create([
+            'user_id' => Auth::id(),
+            'status' => $request->status
+        ]);
+
+        //photos saving
+        if ($request->photos) {
+            $photos = [];
+            foreach ($request->photos as $key => $photo) {
+                //generate new name
+                $newName = uniqid() . "_post_photo." . $photo->extension();
+                //store to storage
+                $photo->storeAs("public", $newName);
+                //for multiple insertaion
+                $photos[] = [
+                    'post_id' => $post->id,
+                    'name' => $newName
+                ];
+            }
+            //multiple insertaion
+            PostPhoto::insert($photos);
+        }
+
+        return redirect()->route('home');
     }
 
     /**
@@ -82,5 +116,21 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         //
+    }
+
+    public function handleLikePost(Post $post)
+    {
+        $like =  Like::where('user_id', Auth::id())
+            ->where('post_id', $post->id)->first();
+
+        if ($like) {
+            $like->delete();
+        } else {
+            Like::create([
+                'user_id' => Auth::id(),
+                'post_id' => $post->id
+            ]);
+        }
+        return back();
     }
 }

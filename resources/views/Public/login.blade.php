@@ -2,7 +2,7 @@
     <x-slot:title>
         Login
     </x-slot:title>
-    <div class="container-fluid bg-dark vh-100 d-flex align-items-center justify-content-center">
+    <div class="container-fluid bg-dark d-flex align-items-center vh-100 justify-content-center">
         <div class="" style="max-width: 420px">
             <h3 class="text-white text-center mb-4">Be Ready To <span
                     class="text-dark border p-2 rounded rounded-2 bg-white border-0 m-1">Geek</span>.

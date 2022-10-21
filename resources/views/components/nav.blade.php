@@ -1,6 +1,7 @@
-<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+<nav class="navbar navbar-expand-lg bg-white navbar-white border-bottom border-opacity-10 border-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="/"><span
+                class="text-white border p-2 rounded rounded-2 bg-primary border-0 m-1">Geek</span></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -9,9 +10,6 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -30,7 +28,7 @@
                 <li class="nav-item">
                     <form action="{{route('logout')}}" method="POST">
                         @csrf
-                        <button type="submit" class="nav-link">Logout</button>
+                        <button type="submit" class=" btn btn-outline-light">Logout</button>
                     </form>
                 </li>
             </ul>

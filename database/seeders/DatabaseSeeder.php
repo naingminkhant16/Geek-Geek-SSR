@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Storage;
 
 class DatabaseSeeder extends Seeder
 {
@@ -23,5 +24,10 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::factory(10)->create();
+
+        //delete photos
+        $photos = Storage::allFiles('public');
+        array_shift($photos);
+        Storage::delete($photos);
     }
 }
