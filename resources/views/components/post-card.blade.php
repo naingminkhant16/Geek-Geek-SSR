@@ -19,10 +19,11 @@
             <div id="photo{{$post->id}}" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     @foreach ($post->photos as $photo)
-                    <div class="carousel-item @if ($loop->first)
-                        active
-                    @endif">
-                        <img src="{{asset('storage/'.$photo->name)}}" class="d-block w-100">
+                    <div class="carousel-item @if($loop->first) active @endif">
+                        <a href="{{asset('storage/'.$photo->name)}}" class="venobox">
+                            <img src="{{asset('storage/'.$photo->name)}}" class="d-block w-100"
+                                style="height:400px;object-fit:cover;">
+                        </a>
                     </div>
                     @endforeach
                 </div>
@@ -44,41 +45,47 @@
                 <form action="{{route('posts.like',$post->id)}}" method="POST" class="inline-block">
                     @csrf
                     <div class="">
-                        <button class="bg-white border-0">
-                            @if ($post->likes()->where('user_id',Auth::id())->exists())
+                        <button class="bg-white border-0 me-0">
+                            @if ($post->likes->contains('user_id',Auth::id()))
                             <i class="bi bi-heart-fill text-danger fs-5"></i>
                             @else
                             <i class="bi bi-heart fs-5"></i>
                             @endif
                         </button>
-                        <span class="text-black-50">{{$post->likes()->count()}} likes</span>
+                        <span class="text-black-50">{{$post->likes->count()}} likes</span>
                     </div>
                 </form>
             </div>
             <div class="me-3">
-                <i class="bi bi-chat fs-5"></i>
-                <span class="text-black-50">{{$post->comments()->count()}} comments</span>
+                <i class="bi bi-chat fs-5 me-1"></i>
+                <span class="text-black-50">{{$post->comments->count()}} comments</span>
             </div>
         </div>
         <hr>
-        {{-- post's comment section --}}
-        @if($post->comments()->count())
-        <x-comment-card :comment="$post->comments[0]" />
 
-        @if ($post->comments()->count()>1)
+        {{-- post's comment section --}}
+        @if($post->comments->count())
+
+        <x-comment-card :comment="$post->comments->last()" /> {{-- show latest comment --}}
+
+        @if ($post->comments->count()>1)
+
         @php
-        $post->comments->forget(0);
+        $post->comments->pop();//remove last comment
         @endphp
+
         <div class="d-none" id="hideComments{{$post->id}}">
-            @foreach ($post->comments as $comment)
+            @foreach ($post->comments->reverse() as $comment)
             <x-comment-card :comment="$comment" />
             @endforeach
         </div>
+
         <p class="text-black-50" style="cursor: pointer" id="VMC{{$post->id}}" onclick="viewComments({{$post->id}})">
-            View more comments</p>
+            View more comments <i class="bi bi-caret-down-fill"></i>
+        </p>
         <p class="text-black-50 d-none" style="cursor: pointer" id="HC{{$post->id}}"
             onclick="hideComments({{$post->id}})">
-            Hide comments</p>
+            Hide comments <i class="bi bi-caret-up-fill"></i></p>
         @endif
 
         @endif

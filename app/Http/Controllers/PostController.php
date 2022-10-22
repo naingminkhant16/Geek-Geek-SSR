@@ -23,7 +23,10 @@ class PostController extends Controller
             return $user->id;
         });
 
-        $posts = Post::whereIn('user_id', [...$followers_ids, Auth::id()])->latest()->get();
+        $posts = Post::whereIn('user_id', [...$followers_ids, Auth::id()])
+            ->with(['user', 'comments.user', 'photos', 'likes'])
+            ->latest()
+            ->get();
 
         return view('Auth.index', ['posts' => $posts]);
     }
