@@ -7,6 +7,7 @@ use App\Http\Requests\UpdatePostRequest;
 use App\Models\Like;
 use App\Models\Post;
 use App\Models\PostPhoto;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
@@ -22,13 +23,18 @@ class PostController extends Controller
         $followers_ids = Auth::user()->followings->map(function ($user) {
             return $user->id;
         });
+        $followers_ids = [...$followers_ids, Auth::id()];
 
-        $posts = Post::whereIn('user_id', [...$followers_ids, Auth::id()])
+        $posts = Post::whereIn('user_id', $followers_ids)
             ->with(['user', 'comments.user', 'photos', 'likes'])
             ->latest()
             ->get();
 
-        return view('Auth.index', ['posts' => $posts]);
+        return view('Auth.index', [
+            'posts' => $posts,
+            'people' => User::whereNotIn('id', $followers_ids)
+                ->limit(5)->inRandomOrder()->get()
+        ]);
     }
 
     /**

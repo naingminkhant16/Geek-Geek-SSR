@@ -2,12 +2,16 @@
     <x-slot:title>Home</x-slot:title>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-3">
-
+            <div class="d-none d-lg-block col-lg-4">
+                <div class="mt-3 d-flex justify-content-end">
+                    <div class="w-50">
+                        <x-profile-preview-card />
+                    </div>
+                </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-4">
                 <div class="d-flex mt-3 justify-content-center">
-                    <div style="width: 600px">
+                    <div class="w-100 overflow-auto" style="height: 820px">
                         <div class="bg-white p-3 rounded shadow w-100">
                             <h6 class="border-bottom pb-2 mb-2">Post Something</h6>
                             <div class="d-flex justify-content-between align-items-center">
@@ -27,8 +31,12 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3">
-
+            <div class="d-none d-lg-block  col-lg-4">
+                <div class="mt-3 d-flex justify-content-start">
+                    <div class="w-50">
+                        <x-people-u-may-know-card :people="$people" />
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\OAuthController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -41,6 +42,9 @@ Route::middleware(['auth'])->group(function () {
 
     //comments
     Route::post('/comments/{post}', [CommentController::class, 'store'])->name('comments.store');
+
+    //users
+    Route::post('/users/follow', [UserController::class, 'follow'])->name('users.follow');
 });
 
 //Public Routes
