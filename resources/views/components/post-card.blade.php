@@ -1,5 +1,5 @@
-@props(['post'])
-<div class="bg-white shadow rounded my-3 p-3">
+@props(['post','show'=>false])
+<div class="bg-white shadow rounded mb-3 p-3">
     <div class="d-flex justify-content-between align-items-center mb-3">
         <div class="d-flex align-items-center">
             <x-avatar :path="$post->user->profile" />
@@ -13,7 +13,14 @@
         </div>
     </div>
     <div class="">
-        <p class="mb-3" style="text-align: justify">{{$post->status}}</p>
+        <p class="mb-3" style="text-align: justify">
+            @if (!$show)
+            {{Str::words($post->status, 50,'')}}
+            <a href="{{route('posts.show',$post->id)}}" class="text-black-50 text-decoration-none"> See More...</a>
+            @else
+            {{$post->status}}
+            @endif
+        </p>
         @if ($post->photos)
         <div class="mb-3">
             <div id="photo{{$post->id}}" class="carousel slide" data-bs-ride="carousel">

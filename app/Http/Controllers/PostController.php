@@ -30,7 +30,7 @@ class PostController extends Controller
             ->latest()
             ->get();
 
-        return view('Auth.index', [
+        return view('Auth.Posts.index', [
             'posts' => $posts,
             'people' => User::whereNotIn('id', $followers_ids)
                 ->limit(5)->inRandomOrder()->get()
@@ -44,7 +44,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('Auth.post-create');
+        return view('Auth.Posts.create');
     }
 
     /**
@@ -90,7 +90,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return view('Auth.Posts.show', ['post' => $post->load(['comments.user', 'photos', 'likes'])]);
     }
 
     /**

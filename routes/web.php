@@ -45,6 +45,7 @@ Route::middleware(['auth'])->group(function () {
 
     //users
     Route::post('/users/follow', [UserController::class, 'follow'])->name('users.follow');
+    Route::get('/users/people-you-may-know', [UserController::class, 'peopleYouMayKnow'])->name('users.peopleYouMayKnow');
 });
 
 //Public Routes

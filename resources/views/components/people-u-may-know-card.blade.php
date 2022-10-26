@@ -1,4 +1,4 @@
-@props(['people'])
+@props(['people','show'=>false])
 <div class="bg-white p-3 rounded shadow w-100">
     <h5>People You May Know</h5>
     <hr>
@@ -20,6 +20,12 @@
         </div>
     </div>
     @endforeach
-    <a href="" class="text-black-50 text-decoration-none">
+    @if ($show)
+    <div class="">
+        {{$people->onEachSide(1)->links()}}
+    </div>
+    @else
+    <a href="{{route('users.peopleYouMayKnow')}}" class="text-black-50 text-decoration-none">
         <small>View More Friends <i class="bi bi-caret-down-fill"></i></small></a>
+    @endif
 </div>

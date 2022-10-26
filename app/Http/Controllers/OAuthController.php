@@ -46,8 +46,7 @@ class OAuthController extends Controller
             'name' => $OAuthUser->name,
             'username' => $OAuthUser->name,
             'email' => $OAuthUser->email,
-            'password' => Hash::make('password'),
-            'profile' => $OAuthUser->avatar
+            'password' => Hash::make('password')
         ]);
 
         //verify email cuz oauth user email dont need to verify by sending mail

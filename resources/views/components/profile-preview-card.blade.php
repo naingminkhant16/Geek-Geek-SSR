@@ -11,15 +11,17 @@
             <small class="">"{{Auth::user()->bio??'No Bio'}}"</small><br>
             <small class="text-black-50">Joined On {{Auth::user()->created_at->format('M, Y')}}.</small>
         </div>
-        <div class="row mt-3">
-            <div class="border col rounded text-center p-3">
+        <hr>
+        <div class="d-flex justify-content-between">
+            <div class="text-center w-50">
                 <h4 class=""> {{Auth::user()->followers->count()}}</h4>
                 <small class="text-black-50"><i class="bi bi-people-fill"></i> Followers</small>
             </div>
-            <div class="border col rounded text-center p-3">
+            <div class="text-center border-start w-50">
                 <h4 class=""> {{Auth::user()->followings->count()}}</h4>
                 <small class="text-black-50"><i class="bi bi-person-check-fill"></i> Following</small>
             </div>
         </div>
+        <hr>
     </div>
 </div>
