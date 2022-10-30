@@ -65,4 +65,9 @@ class UserController extends Controller
     {
         return view('Auth.Users.followings', ['people' => $user->followings]);
     }
+
+    public function show(User $user)
+    {
+        return view('Auth.Users.show', ['user' => $user]);
+    }
 }

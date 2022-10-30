@@ -49,6 +49,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/users/people-you-may-know', [UserController::class, 'peopleYouMayKnow'])->name('users.peopleYouMayKnow');
     Route::get('/users/{user:username}/followers', [UserController::class, 'followers'])->name('users.followers');
     Route::get('/users/{user:username}/followings', [UserController::class, 'followings'])->name('users.followings');
+    Route::get('/users/{user:username}', [UserController::class, 'show'])->name('users.show');
 });
 
 //Public Routes

@@ -4,7 +4,8 @@
         <div class="d-flex align-items-center">
             <x-avatar :path="$post->user->profile" />
             <div class="d-flex flex-column justify-content-center mt-2">
-                <h6 class="mb-1">{{$post->user->name}}</h6>
+                <h6 class="mb-1"><a href="{{route('users.show',$post->user->username)}}"
+                        class="text-decoration-none text-black">{{$post->user->name}}</a></h6>
                 <small class="text-black-50">{{$post->created_at->diffForHumans()}}</small>
             </div>
         </div>
