@@ -1,6 +1,6 @@
-@props(['people','show'=>false])
+@props(['people','title'=>"People You May Know"])
 <div class="bg-white p-3 rounded shadow w-100">
-    <h5>People You May Know</h5>
+    <h5>{{$title}}</h5>
     <hr>
     @foreach ($people as $person)
     <div class="d-flex align-items-center justify-content-between border-bottom mb-3 pb-3">
@@ -12,20 +12,29 @@
             </div>
         </div>
         <div class="">
+            @if (!Auth::user()->followings->contains('id',$person->id))
             <form action="{{route('users.follow')}}" id="" method="POST">
                 @csrf
                 <input type="hidden" name="user_id" value="{{$person->id}}">
                 <button class="bg-white border-0" type="submit"><i class=" bi bi-plus-circle text-primary"></i></button>
             </form>
+            @else
+            <i class="bi bi-person-check-fill text-primary me-1 " data-bs-toggle="dropdown"></i>
+            <ul class="dropdown-menu">
+                <form action="{{route('users.unfollow')}}" method="POST">
+                    @csrf
+                    <input type="hidden" name="user_id" value="{{$person->id}}">
+                    <button class="dropdown-item text-danger" type="submit">
+                        <i class="bi bi-person-dash-fill"></i>
+                        <small>Unfollow</small>
+                    </button>
+                </form>
+            </ul>
+            @endif
         </div>
     </div>
     @endforeach
-    @if ($show)
     <div class="">
-        {{$people->onEachSide(1)->links()}}
+        {{$slot}}
     </div>
-    @else
-    <a href="{{route('users.peopleYouMayKnow')}}" class="text-black-50 text-decoration-none">
-        <small>View More Friends <i class="bi bi-caret-down-fill"></i></small></a>
-    @endif
 </div>

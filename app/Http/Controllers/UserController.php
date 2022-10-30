@@ -11,14 +11,14 @@ class UserController extends Controller
 {
     public function follow()
     {
+        request()->validate([
+            'user_id' => "exists:users,id"
+        ]);
+
         //check duplicate data
         if (Follower::where('user_id', request('user_id'))->where('follower_id', Auth::id())->exists()) {
             return back();
         }
-
-        request()->validate([
-            'user_id' => "exists:users,id"
-        ]);
 
         Follower::create([
             'user_id' => request('user_id'),
@@ -26,6 +26,21 @@ class UserController extends Controller
         ]);
 
         return back();
+    }
+
+    public function unfollow()
+    {
+        request()->validate([
+            'user_id' => "exists:users,id"
+        ]);
+
+        if (Follower::where('user_id', request('user_id'))->where('follower_id', Auth::id())->exists()) {
+            $f = Follower::where('user_id', request('user_id'))->where('follower_id', Auth::id())->first();
+            $f->delete();
+            return back();
+        } else {
+            return back();
+        }
     }
 
     public function peopleYouMayKnow()
@@ -39,5 +54,15 @@ class UserController extends Controller
             ->latest()
             ->paginate(10)
             ->withQueryString()]);
+    }
+
+    public function followers(User $user)
+    {
+        return view('Auth.Users.followers', ['people' => $user->followers]);
+    }
+
+    public function followings(User $user)
+    {
+        return view('Auth.Users.followings', ['people' => $user->followings]);
     }
 }

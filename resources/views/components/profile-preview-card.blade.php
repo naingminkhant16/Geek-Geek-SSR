@@ -15,11 +15,14 @@
         <div class="d-flex justify-content-between">
             <div class="text-center w-50">
                 <h4 class=""> {{Auth::user()->followers->count()}}</h4>
-                <small class="text-black-50"><i class="bi bi-people-fill"></i> Followers</small>
+                <a href="{{route('users.followers',Auth::user()->username)}}"> <small class="text-black-50"><i
+                            class="bi bi-people-fill"></i> Followers</small></a>
             </div>
             <div class="text-center border-start w-50">
                 <h4 class=""> {{Auth::user()->followings->count()}}</h4>
-                <small class="text-black-50"><i class="bi bi-person-check-fill"></i> Following</small>
+                <a href="{{route('users.followings',Auth::user()->username)}}">
+                    <small class="text-black-50"><i class="bi bi-person-check-fill"></i> Following</small>
+                </a>
             </div>
         </div>
         <hr>

@@ -17,6 +17,6 @@ class CommentController extends Controller
             'user_id' => Auth::id(),
             'body' => request('body')
         ]);
-        return back();
+        return redirect()->route('posts.show', $post->id);
     }
 }

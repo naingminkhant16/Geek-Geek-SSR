@@ -40,7 +40,10 @@
             <div class="d-none d-lg-block  col-lg-4">
                 <div class="mt-3 d-flex justify-content-start">
                     <div class="" style="width: 300px">
-                        <x-people-u-may-know-card :people="$people" />
+                        <x-people-you-may-know-card :people="$people">
+                            <a href="{{route('users.peopleYouMayKnow')}}" class="text-black-50 text-decoration-none">
+                                <small>View More Friends <i class="bi bi-caret-down-fill"></i></small></a>
+                        </x-people-you-may-know-card>
                     </div>
                 </div>
             </div>

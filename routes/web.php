@@ -45,7 +45,10 @@ Route::middleware(['auth'])->group(function () {
 
     //users
     Route::post('/users/follow', [UserController::class, 'follow'])->name('users.follow');
+    Route::post('/users/unfollow', [UserController::class, 'unfollow'])->name('users.unfollow');
     Route::get('/users/people-you-may-know', [UserController::class, 'peopleYouMayKnow'])->name('users.peopleYouMayKnow');
+    Route::get('/users/{user:username}/followers', [UserController::class, 'followers'])->name('users.followers');
+    Route::get('/users/{user:username}/followings', [UserController::class, 'followings'])->name('users.followings');
 });
 
 //Public Routes
