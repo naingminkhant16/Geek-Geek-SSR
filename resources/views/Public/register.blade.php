@@ -11,17 +11,15 @@
             <hr class="text-white">
             <form action="{{route('attemptRegister')}}" method="POST" class="mt-4">
                 @csrf
-                <x-input label="Your Geek's Name" name="name" :value="old('name')" error="name" />
+                <x-input label="Your Geek's Name" name="name" :value="old('name')" />
 
-                <x-input label="Your Geek's Email" name="email" :value="old('email')" error="email" />
+                <x-input label="Your Geek's Email" name="email" :value="old('email')" />
 
-                <x-input label="Your Geek's Password" name="password" error="password" type='password' />
+                <x-input label="Your Geek's Password" name="password" type='password' />
 
-                <x-input label="Confirm Password" name="password_confirmation" type='password'
-                    error="password_confirmation" />
+                <x-input label="Confirm Password" name="password_confirmation" type='password' />
 
-                <x-input label="Your Geek's BOD" name="date_of_birth" error="date_of_birth" type='date'
-                    :value="old('date_of_birth')" />
+                <x-input label="Your Geek's BOD" name="date_of_birth" type='date' :value="old('date_of_birth')" />
                 <div class="mb-3">
                     <x-button label="Register" color="primary" />
                 </div>

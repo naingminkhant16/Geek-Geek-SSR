@@ -10,6 +10,12 @@ class PostPolicy
 {
     use HandlesAuthorization;
 
+    public function before(User $user)
+    {
+        if ($user->is_admin)
+            return true;
+    }
+
     /**
      * Determine whether the user can view any models.
      *

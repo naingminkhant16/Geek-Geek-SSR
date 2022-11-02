@@ -11,9 +11,9 @@
             <hr class="text-white">
             <form action="{{route('attemptLogin')}}" method="POST" class="mt-4">
                 @csrf
-                <x-input label="Your Geek's Email" name="email" :value="old('email')" error="email" />
+                <x-input label="Your Geek's Email" name="email" :value="old('email')" />
 
-                <x-input label="Your Geek's Password" name="password" error="password" type='password' />
+                <x-input label="Your Geek's Password" name="password" type='password' />
 
                 <div class="mb-3">
                     <x-button label="Login" color="primary" />

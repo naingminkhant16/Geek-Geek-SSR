@@ -45,7 +45,7 @@ class AuthController extends Controller
     public function attemptRegister()
     {
         $formData = request()->validate([
-            'name' => 'required|min:3|max:20',
+            'name' => 'required|min:3|max:30',
             'email' => "required|email|unique:users,email",
             'password' => [
                 'required',

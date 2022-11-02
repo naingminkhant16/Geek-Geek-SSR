@@ -21,7 +21,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->enum('is_admin', [0, 1])->default(0);
-            $table->string('profile')->default('https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png');
+            $table->string('profile')->default('default_pp.png');
             $table->text('bio')->nullable();
             $table->date('date_of_birth')->nullable();
             $table->rememberToken();

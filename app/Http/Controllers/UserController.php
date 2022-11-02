@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
 {
@@ -89,5 +90,37 @@ class UserController extends Controller
             ->get();
 
         return view('Auth.Users.search', ['posts' => $posts, 'users' => $users]);
+    }
+
+    public function edit(User $user)
+    {
+        Gate::authorize('update-user', $user);
+        return view('Auth.Users.edit', ['user' => $user]);
+    }
+
+    public function update(User $user)
+    {
+        Gate::authorize('update-user', $user);
+        request()->validate([
+            'name' => 'required|min:3|max:30',
+            'bio' => 'nullable|min:3|max:100',
+            'date_of_birth' => "nullable|date",
+            'profile' => "nullable|file|mimes:png,jpg,jpeg|max:512",
+        ]);
+
+        $user = User::findOrFail($user->id);
+        $user->name = request('name');
+        $user->bio = request('bio');
+        $user->date_of_birth = request('date_of_birth');
+
+        if (request('profile')) {
+            $newName = uniqid() . "_profile_photo." . request('profile')->extension();
+            request('profile')->storeAs('public', $newName);
+            $user->profile = $newName;
+        }
+
+        $user->update();
+
+        return back();
     }
 }
