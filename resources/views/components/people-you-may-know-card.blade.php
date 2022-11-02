@@ -2,17 +2,23 @@
 <div class="bg-white p-3 rounded shadow w-100">
     <h5>{{$title}}</h5>
     <hr>
-    @foreach ($people as $person)
+    @forelse ($people as $person)
     <div class="d-flex align-items-center justify-content-between border-bottom mb-3 pb-3">
         <div class="d-flex justify-content-start align-items-center">
             <x-avatar :path="$person->profile" width="28" />
             <div class="d-flex flex-column justify-content-center mt-2">
-                <h6 class="mb-0"><a href="" class="text-decoration-none text-black">{{$person->name}}</a></h6>
+                <h6 class="mb-0">
+                    <a href="{{route('users.show',$person->username)}}" class="text-decoration-none text-black">
+                        {{$person->name}}
+                    </a>
+                </h6>
                 <small class="text-black-50">Joined on {{$person->created_at->format('M, Y')}}</small>
             </div>
         </div>
         <div class="">
-            @if (!Auth::user()->followings->contains('id',$person->id))
+            @if(Auth::id()===$person->id)
+            {{-- if auth id == person id --}}
+            @elseif (!Auth::user()->followings->contains('id',$person->id))
             <form action="{{route('users.follow')}}" id="" method="POST">
                 @csrf
                 <input type="hidden" name="user_id" value="{{$person->id}}">
@@ -33,7 +39,9 @@
             @endif
         </div>
     </div>
-    @endforeach
+    @empty
+    <p class="text-center mb-0 text-black-50">No users!</p>
+    @endforelse
     <div class="">
         {{$slot}}
     </div>

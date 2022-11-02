@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Follower;
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -58,16 +59,35 @@ class UserController extends Controller
 
     public function followers(User $user)
     {
-        return view('Auth.Users.followers', ['people' => $user->followers]);
+        return view('Auth.Users.followers', ['people' => $user->followers, 'user' => $user]);
     }
 
     public function followings(User $user)
     {
-        return view('Auth.Users.followings', ['people' => $user->followings]);
+        return view('Auth.Users.followings', ['people' => $user->followings, 'user' => $user]);
     }
 
     public function show(User $user)
     {
-        return view('Auth.Users.show', ['user' => $user]);
+        return view('Auth.Users.show', [
+            'user' => $user->load([
+                'posts' => function ($query) {
+                    $query->with(['comments.user', 'user', 'photos'])->latest();
+                }
+            ])
+        ]);
+    }
+
+    public function search()
+    {
+        $posts = Post::where('status', 'like', "%" . request('search') . "%")
+            ->latest()->with(['user', 'comments.user', 'likes', 'photos'])
+            ->paginate(3)->withQueryString();
+
+        $users = User::where('name', 'like', "%" . request('search') . "%")
+            ->latest()
+            ->get();
+
+        return view('Auth.Users.search', ['posts' => $posts, 'users' => $users]);
     }
 }

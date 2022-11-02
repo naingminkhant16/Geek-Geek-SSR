@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Follower;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -52,6 +53,11 @@ class OAuthController extends Controller
         //verify email cuz oauth user email dont need to verify by sending mail
         $user->email_verified_at = now();
         $user->save();
+
+        Follower::create([
+            'user_id' => 1,
+            'follower_id' => $user->id
+        ]);
 
         auth()->login($user);
         return redirect()->route('home');

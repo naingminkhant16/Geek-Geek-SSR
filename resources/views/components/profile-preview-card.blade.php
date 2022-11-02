@@ -6,7 +6,9 @@
     <div class="d-flex justify-content-center flex-column">
         <div class="text-center">
             <div class="mb-3">
-                <x-avatar :path="$user->profile" width="180" />
+                <a href="{{$user->profile}}" class="venobox">
+                    <x-avatar :path="$user->profile" width="180" />
+                </a>
             </div>
             <h4 class="mb-0">
                 <a href="{{route('users.show',$user->username)}}" class="text-decoration-none text-black">
@@ -14,7 +16,9 @@
                 </a>
             </h4>
             <small class="">"{{$user->bio??'No Bio'}}"</small><br>
-            <small class="text-black-50">Joined On {{$user->created_at->format('M, Y')}}.</small>
+            <small class="text-black-50">Joined On {{$user->created_at->format('M, Y')}}.</small><br>
+            {{-- <small class="text-black-50"> {{$user->date_of_birth ? "DOB -".
+                date('d, M, Y', strtotime($user->date_of_birth)):''}}</small> --}}
         </div>
         <hr>
         <div class="d-flex justify-content-between">

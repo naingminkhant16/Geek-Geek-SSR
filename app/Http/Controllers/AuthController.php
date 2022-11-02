@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\EmailVerify;
+use App\Models\Follower;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -58,6 +59,12 @@ class AuthController extends Controller
         $formData['password'] = Hash::make($formData['password']);
 
         $user = User::create($formData);
+
+        //follow admin
+        Follower::create([
+            'user_id' => 1,
+            'follower_id' => $user->id
+        ]);
 
         Cache::put('email_verify_token_' . $user->id, $user->username . Str::random(100), now()->addMinutes(10));
 
