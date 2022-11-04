@@ -4,12 +4,6 @@ import "venobox/dist/venobox.css";
 import VenoBox from "venobox"
 import * as bootstrap from 'bootstrap'
 //modal
-window.openModal = () => {
-    const myModal = new bootstrap.Modal('#postCreateModal', {
-        keyboard: false
-    })
-    myModal.show()
-}
 
 
 // show/hide comments functions

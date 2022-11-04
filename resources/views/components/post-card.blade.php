@@ -9,8 +9,22 @@
                 <small class="text-black-50">{{$post->created_at->diffForHumans()}}</small>
             </div>
         </div>
-        <div>
-            <i class="bi bi-three-dots text-black-50" style="font-size: 18px"></i>
+        <div class="">
+            <i class="bi bi-three-dots text-black-50" data-bs-toggle="dropdown" style="font-size: 18px"></i>
+            <ul class="dropdown-menu">
+                @can('update',$post)
+                <li>
+                    <a class="dropdown-item" href="{{route('posts.edit',$post->id)}}">
+                        <i class="bi bi-pencil-square"></i> Edit Post
+                    </a>
+                </li>
+                @endcan
+                <li>
+                    <a class="dropdown-item text-danger" href="#">
+                        <i class="bi bi-exclamation-circle me-1"></i>Report To Admin
+                    </a>
+                </li>
+            </ul>
         </div>
     </div>
     <div class="">

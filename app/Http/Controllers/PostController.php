@@ -9,6 +9,7 @@ use App\Models\Post;
 use App\Models\PostPhoto;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class PostController extends Controller
 {
@@ -64,7 +65,7 @@ class PostController extends Controller
         //photos saving
         if ($request->photos) {
             $photos = [];
-            foreach ($request->photos as $key => $photo) {
+            foreach ($request->photos as  $photo) {
                 //generate new name
                 $newName = uniqid() . "_post_photo." . $photo->extension();
                 //store to storage
@@ -101,7 +102,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        Gate::authorize('update', $post);
+        return view('Auth.Posts.edit', ['post' => $post]);
     }
 
     /**
@@ -113,7 +115,28 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
-        //
+        $post->status = $request->status;
+        $post->update();
+
+        //photos saving
+        if ($request->photos) {
+            $photos = [];
+            foreach ($request->photos as  $photo) {
+                //generate new name
+                $newName = uniqid() . "_post_photo." . $photo->extension();
+                //store to storage
+                $photo->storeAs("public", $newName);
+                //for multiple insertaion
+                $photos[] = [
+                    'post_id' => $post->id,
+                    'name' => $newName
+                ];
+            }
+            //multiple insertaion
+            PostPhoto::insert($photos);
+        }
+
+        return redirect()->route('posts.show', $post->id);
     }
 
     /**

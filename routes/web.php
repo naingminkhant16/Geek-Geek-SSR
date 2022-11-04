@@ -4,20 +4,11 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\OAuthController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\PostPhotoController;
 use App\Http\Controllers\UserController;
-use App\Models\User;
+
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 //OAuth Routes
 //google
@@ -36,6 +27,9 @@ Route::middleware(['auth'])->group(function () {
     //posts
     Route::resource('/posts', PostController::class);
     Route::post('/posts/like/{post}', [PostController::class, 'handleLikePost'])->name('posts.like');
+
+    //photos
+    Route::delete('/post-photos/{photo}', [PostPhotoController::class, 'delete'])->name('post-photos.delete');
 
     //logout
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

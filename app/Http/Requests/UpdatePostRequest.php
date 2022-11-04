@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Gate;
 
 class UpdatePostRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class UpdatePostRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return Gate::authorize('update', $this->post);
     }
 
     /**
@@ -24,7 +25,9 @@ class UpdatePostRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'status' => 'required|min:5|max:1000',
+            'photos' => "nullable",
+            'photos.*' => "nullable|mimes:png,jpeg,jpg|max:1024|file"
         ];
     }
 }

@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -114,6 +115,11 @@ class UserController extends Controller
         $user->date_of_birth = request('date_of_birth');
 
         if (request('profile')) {
+            // delete old profile photo
+            if ($user->profile !== 'default_pp.png') {
+                Storage::delete('public/' . $user->profile);
+            }
+
             $newName = uniqid() . "_profile_photo." . request('profile')->extension();
             request('profile')->storeAs('public', $newName);
             $user->profile = $newName;
