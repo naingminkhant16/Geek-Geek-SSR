@@ -10,6 +10,7 @@ use App\Models\PostPhoto;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -147,7 +148,28 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        Gate::authorize('delete', $post);
+        //delete photos
+        if (!empty($post->photos)) {
+            foreach ($post->photos as $photo) {
+                Storage::delete('public/' . $photo->name);
+            }
+            $post->photos()->delete();
+        }
+
+        //delete comments
+        if (!empty($post->comments)) {
+            $post->comments()->delete();
+        }
+
+        //delete likes
+        if (!empty($post->likes)) {
+            $post->likes()->delete();
+        }
+
+        $post->delete();
+
+        return redirect()->route('home');
     }
 
     public function handleLikePost(Post $post)

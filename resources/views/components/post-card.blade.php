@@ -20,10 +20,21 @@
                 </li>
                 @endcan
                 <li>
-                    <a class="dropdown-item text-danger" href="#">
+                    <a class="dropdown-item" href="#">
                         <i class="bi bi-exclamation-circle me-1"></i>Report To Admin
                     </a>
                 </li>
+                @can('delete',$post)
+                <li>
+                    <form action="{{route('posts.destroy',$post->id)}}" method="POST" id="postDeleteForm{{$post->id}}">
+                        @csrf
+                        @method('delete')
+                    </form>
+                    <button class="dropdown-item text-danger" type="submit" form="postDeleteForm{{$post->id}}">
+                        <i class="bi bi-trash"></i> Delete Post
+                    </button>
+                </li>
+                @endcan
             </ul>
         </div>
     </div>
