@@ -39,14 +39,28 @@
         @forelse ($post->photos as $photo)
         {{-- <a href="{{asset('storage/'.$photo->name)}}" class="venobox"> --}}
             <div class="position-relative mb-3 rounded"
-                style="background-image:url({{asset('storage/'.$photo->name)}});height:400px;background-position:center">
-                <form action="{{route('post-photos.delete',$photo->id)}}" class="position-absolute end-0 me-2 mt-2"
+                style="background-image:url({{asset('storage/'.$photo->name)}});height:400px;background-position:center;">
+
+                <div class="position-absolute end-0 m-1">
+                    <button type="button" class="btn btn-white text-white" data-bs-toggle="modal"
+                        data-bs-target="#photoDeleteConfirmModal">
+                        <i class="bi bi-x-lg fs-5"></i>
+                    </button>
+                </div>
+
+                <form action="{{route('post-photos.delete',$photo->id)}}" class="d-none"
                     id="photoDeleteForm{{$photo->id}}" method="POST" enctype="multipart/form-data">
                     @csrf @method('delete')
-                    <button class="border-0 rounded bg-light" form="photoDeleteForm{{$photo->id}}" type="submit">
-                        <i class="bi bi-x-lg fs-6"></i>
-                    </button>
                 </form>
+
+                <x-modal id="photoDeleteConfirmModal">
+                    <div class="text-center">
+                        <h5>Are u sure u want to delete?</h5>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
+                        <button form="photoDeleteForm{{$photo->id}}" type="submit"
+                            class="btn btn-primary text-white">Yes</button>
+                    </div>
+                </x-modal>
             </div>
             {{--
         </a> --}}
