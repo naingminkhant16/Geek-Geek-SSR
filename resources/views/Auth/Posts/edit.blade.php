@@ -68,6 +68,7 @@
 
         @endforelse
         <div class="text-end">
+            <a class="btn btn-danger" href="{{route('home')}}">Cancel</a>
             <button class="btn btn-primary text-white" type="submit" form="postEditForm">Save</button>
         </div>
     </div>
