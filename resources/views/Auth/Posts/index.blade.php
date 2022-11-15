@@ -1,17 +1,17 @@
 <x-layout>
     <x-slot:title>Home</x-slot:title>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="d-none d-lg-block col-lg-4">
+    <div class="container">
+        <div class="row g-0">
+            <div class="d-none d-lg-block col-lg-3">
                 <div class="mt-3 d-flex justify-content-end">
-                    <div class="" style="width: 300px">
+                    <div class="w-100 px-3">
                         <x-profile-preview-card />
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-6">
                 <div class="d-flex mt-3 justify-content-center">
-                    <div class="w-100 overflow-auto" style="height: 820px">
+                    <div class="w-100 overflow-auto px-lg-3" style="height: 820px">
                         <div class="bg-white p-3 rounded shadow w-100 mb-3">
                             <h6 class="border-bottom pb-2 mb-2">Post Something</h6>
                             <div class="d-flex justify-content-between align-items-center">
@@ -37,9 +37,9 @@
                     </div>
                 </div>
             </div>
-            <div class="d-none d-lg-block  col-lg-4">
+            <div class="d-none d-lg-block  col-lg-3">
                 <div class="mt-3 d-flex justify-content-start">
-                    <div class="" style="width: 300px">
+                    <div class="w-100 px-3">
                         <x-people-you-may-know-card :people="$people">
                             <a href="{{route('users.peopleYouMayKnow')}}" class="text-black-50 text-decoration-none">
                                 <small>View More Friends <i class="bi bi-caret-down-fill"></i></small></a>

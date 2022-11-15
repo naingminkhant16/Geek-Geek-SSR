@@ -19,8 +19,6 @@
             </h4>
             <small class="">"{{$user->bio??'No Bio'}}"</small><br>
             <small class="text-black-50">Joined On {{$user->created_at->format('M, Y')}}.</small><br>
-            {{-- <small class="text-black-50"> {{$user->date_of_birth ? "DOB -".
-                date('d, M, Y', strtotime($user->date_of_birth)):''}}</small> --}}
         </div>
         <hr>
         <div class="d-flex justify-content-between">
