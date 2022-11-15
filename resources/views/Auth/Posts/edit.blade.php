@@ -58,9 +58,9 @@
                         <x-modal id="photoDeleteConfirmModal">
                             <div class="text-center">
                                 <h5>Are u sure u want to delete?</h5>
-                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
+                                <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">No</button>
                                 <button form="photoDeleteForm{{$photo->id}}" type="submit"
-                                    class="btn btn-primary text-white">Yes</button>
+                                    class="btn btn-danger">Yes</button>
                             </div>
                         </x-modal>
                     </div>

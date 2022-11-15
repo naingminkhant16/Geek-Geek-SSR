@@ -30,7 +30,8 @@
                         @csrf
                         @method('delete')
                     </form>
-                    <button class="dropdown-item text-danger" type="submit" form="postDeleteForm{{$post->id}}">
+                    <button class="dropdown-item text-danger" data-bs-toggle="modal"
+                        data-bs-target="#postDeleteConfirmModal">
                         <i class="bi bi-trash"></i> Delete Post
                     </button>
                 </li>
@@ -38,6 +39,17 @@
             </ul>
         </div>
     </div>
+
+    @can('delete',$post)
+    <x-modal id="postDeleteConfirmModal">
+        <div class="text-center">
+            <h5>Are u sure u want to delete?</h5>
+            <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">No</button>
+            <button form="postDeleteForm{{$post->id}}" type="submit" class="btn btn-danger ">Yes</button>
+        </div>
+    </x-modal>
+    @endcan
+
     <div class="">
         <p class="mb-3" style="text-align: justify">
             @if (!$show)
@@ -57,7 +69,7 @@
                     <div class="carousel-item @if($loop->first) active @endif">
                         <a href="{{asset('storage/'.$photo->name)}}" class="venobox">
                             <img src="{{asset('storage/'.$photo->name)}}" class="d-block w-100"
-                                style="height:460px;object-fit:cover;">
+                                style="height:400px;object-fit:cover;">
                         </a>
                     </div>
                     @endforeach
