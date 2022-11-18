@@ -11,6 +11,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -35,7 +36,8 @@ class PostController extends Controller
         return view('Auth.Posts.index', [
             'posts' => $posts,
             'people' => User::whereNotIn('id', $followers_ids)
-                ->limit(5)->inRandomOrder()->get()
+                ->limit(5)->inRandomOrder()->get(),
+            'breadcrumb_links' => ['Posts' => route('posts.index')]
         ]);
     }
 
@@ -46,7 +48,10 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('Auth.Posts.create');
+        return view('Auth.Posts.create', ['breadcrumb_links' => [
+            'Posts' => route('posts.index'),
+            'Create' => ''
+        ]]);
     }
 
     /**
@@ -92,7 +97,13 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return view('Auth.Posts.show', ['post' => $post->load(['comments.user', 'photos', 'likes'])]);
+        return view('Auth.Posts.show', [
+            'post' => $post->load(['comments.user', 'photos', 'likes']),
+            'breadcrumb_links' => [
+                'Posts' => route('posts.index'),
+                Str::words($post->status, 5) => ''
+            ]
+        ]);
     }
 
     /**
@@ -104,7 +115,13 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         Gate::authorize('update', $post);
-        return view('Auth.Posts.edit', ['post' => $post]);
+        return view('Auth.Posts.edit', [
+            'post' => $post,
+            'breadcrumb_links' => [
+                'Posts' => route('posts.index'),
+                'Edit' => ''
+            ]
+        ]);
     }
 
     /**

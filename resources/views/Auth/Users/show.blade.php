@@ -2,7 +2,8 @@
     <x-slot:title>
         {{$user->username}}
     </x-slot:title>
-    <div class="my-3 container">
+    <x-breadcrumb :links="$breadcrumb_links" />
+    <div class="">
         <div class="row justify-content-center">
             <div class="col-12 col-lg-6">
                 <x-profile-preview-card :user="$user" />

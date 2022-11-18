@@ -53,20 +53,31 @@ class UserController extends Controller
         });
         $followers_ids = [...$followers_ids, Auth::id()];
 
-        return view('Auth.Users.people-you-may-know', ['people' => User::whereNotIn('id', $followers_ids)
-            ->latest()
-            ->paginate(10)
-            ->withQueryString()]);
+        return view('Auth.Users.people-you-may-know', [
+            'people' => User::whereNotIn('id', $followers_ids)
+                ->latest()
+                ->paginate(10)
+                ->withQueryString(),
+            'breadcrumb_links' => [
+                'People You May Know' => route('users.peopleYouMayKnow')
+            ]
+        ]);
     }
 
     public function followers(User $user)
     {
-        return view('Auth.Users.followers', ['people' => $user->followers, 'user' => $user]);
+        return view('Auth.Users.followers', ['people' => $user->followers, 'user' => $user, 'breadcrumb_links' => [
+            $user->name => route('users.show', $user->username),
+            'Followers' => ''
+        ]]);
     }
 
     public function followings(User $user)
     {
-        return view('Auth.Users.followings', ['people' => $user->followings, 'user' => $user]);
+        return view('Auth.Users.followings', ['people' => $user->followings, 'user' => $user, 'breadcrumb_links' => [
+            $user->name => route('users.show', $user->username),
+            'Following' => ''
+        ]]);
     }
 
     public function show(User $user)
@@ -76,7 +87,8 @@ class UserController extends Controller
                 'posts' => function ($query) {
                     $query->with(['comments.user', 'user', 'photos'])->latest();
                 }
-            ])
+            ]),
+            'breadcrumb_links' => [$user->name => '']
         ]);
     }
 
@@ -90,13 +102,16 @@ class UserController extends Controller
             ->latest()
             ->get();
 
-        return view('Auth.Users.search', ['posts' => $posts, 'users' => $users]);
+        return view('Auth.Users.search', ['posts' => $posts, 'users' => $users, 'bradcrumb_links' => ['Search' => '']]);
     }
 
     public function edit(User $user)
     {
         Gate::authorize('update-user', $user);
-        return view('Auth.Users.edit', ['user' => $user]);
+        return view('Auth.Users.edit', ['user' => $user, 'breadcrumb_links' => [
+            $user->name => route('users.show', $user->username),
+            'Edit' => ''
+        ]]);
     }
 
     public function update(User $user)

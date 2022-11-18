@@ -10,7 +10,7 @@
             </div>
         </div>
         <div class="">
-            <i class="bi bi-three-dots text-black-50" data-bs-toggle="dropdown" style="font-size: 18px"></i>
+            <i class="bi bi-three-dots text-black-50 fs-5" data-bs-toggle="dropdown" style="cursor:pointer"></i>
             <ul class="dropdown-menu">
                 @can('update',$post)
                 <li>

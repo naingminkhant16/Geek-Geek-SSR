@@ -1,9 +1,10 @@
 <x-layout>
     <x-slot:title>{{$user->name}}</x-slot:title>
-    <div class="container">
+    <x-breadcrumb :links="$breadcrumb_links" />
+    <div class="">
         <div class="row justify-content-center">
             <div class="col-12 col-lg-6">
-                <div class=" bg-white rounded p-3 my-3 shadow">
+                <div class=" bg-white rounded p-3 shadow">
                     <div class="text-center">
                         <img src="{{asset('storage/'.$user->profile)}}" alt="" width="400" class="img-fluid">
                     </div>

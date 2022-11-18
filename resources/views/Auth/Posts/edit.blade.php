@@ -2,10 +2,11 @@
     <x-slot:title>
         {{Str::words($post->status,2,'...')}}
     </x-slot:title>
-    <div class="container">
+    <x-breadcrumb :links="$breadcrumb_links" />
+    <div class="">
         <div class="row justify-content-center">
             <div class="col-12 col-lg-6 ">
-                <div class=" bg-white shadow p-3 my-3 rounded">
+                <div class=" bg-white shadow p-3 rounded">
 
                     <div class="d-flex align-items-center mb-3">
                         <x-avatar :path="$post->user->profile" />

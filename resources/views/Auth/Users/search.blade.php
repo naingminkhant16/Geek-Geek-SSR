@@ -1,6 +1,7 @@
 <x-layout>
     <x-slot:title>Search</x-slot:title>
-    <div class="container my-3">
+    <x-breadcrumb :links="$bradcrumb_links" />
+    <div class="">
         <div class="row justify-content-center">
             <div class="col-12 col-lg-6">
                 <div class="mb-3">

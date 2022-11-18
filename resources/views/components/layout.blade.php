@@ -15,7 +15,7 @@
         @auth
         <x-nav />
         @endauth
-        <div>
+        <div class="container mt-3">
             {{$slot}}
         </div>
         @auth
