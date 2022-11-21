@@ -12,15 +12,15 @@
 
 <body>
     <div class="d-flex flex-column min-vh-100 bg-light">
-        @auth
+
         <x-nav />
-        @endauth
+
         <div class="container mt-3">
             {{$slot}}
         </div>
-        @auth
+
         <x-footer />
-        @endauth
+
     </div>
 </body>
 

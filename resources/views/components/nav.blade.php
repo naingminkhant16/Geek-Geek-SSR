@@ -4,6 +4,7 @@
             <span class="text-white border p-2 rounded rounded-2 bg-primary border-0 m-1">Geek</span></a>
 
         <div class="d-flex justify-content-center align-items-center">
+            @auth
             <div class="dropdown">
                 <div class="" data-bs-toggle="dropdown">
                     <x-avatar :path="Auth::user()->profile" />
@@ -21,6 +22,7 @@
                     </li>
                 </ul>
             </div>
+            @endauth
             <div class="">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -29,6 +31,7 @@
                 </button>
             </div>
         </div>
+        @auth
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
@@ -44,9 +47,9 @@
                 </li>
             </ul>
         </div>
-
         <form action="{{route('logout')}}" method="POST" id="logout" class="d-none">
             @csrf
         </form>
+        @endauth
     </div>
 </nav>
