@@ -7,7 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Socialite\Facades\Socialite;
-use Illuminate\Support\Str;
+
 
 class OAuthController extends Controller
 {
@@ -60,6 +60,6 @@ class OAuthController extends Controller
         ]);
 
         auth()->login($user);
-        return redirect()->route('home');
+        return redirect()->route('home')->with('success', "Successfully Login.Welcome Back 👋");
     }
 }

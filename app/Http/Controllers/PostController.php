@@ -86,7 +86,7 @@ class PostController extends Controller
             PostPhoto::insert($photos);
         }
 
-        return redirect()->route('home');
+        return redirect()->route('home')->with('success', 'Your Post is successfully created.');
     }
 
     /**
@@ -154,7 +154,7 @@ class PostController extends Controller
             PostPhoto::insert($photos);
         }
 
-        return redirect()->route('posts.show', $post->id);
+        return redirect()->route('posts.show', $post->id)->with('success', 'Your post is successfully updated.');
     }
 
     /**
@@ -186,7 +186,7 @@ class PostController extends Controller
 
         $post->delete();
 
-        return redirect()->route('home');
+        return redirect()->route('home')->with('success', 'Your post is successfully deleted.');
     }
 
     public function handleLikePost(Post $post)

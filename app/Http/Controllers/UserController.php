@@ -18,17 +18,18 @@ class UserController extends Controller
             'user_id' => "exists:users,id"
         ]);
 
+        $user_id = request('user_id');
         //check duplicate data
-        if (Follower::where('user_id', request('user_id'))->where('follower_id', Auth::id())->exists()) {
+        if (Follower::where('user_id', $user_id)->where('follower_id', Auth::id())->exists()) {
             return back();
         }
 
         Follower::create([
-            'user_id' => request('user_id'),
+            'user_id' => $user_id,
             'follower_id' => Auth::id()
         ]);
 
-        return back();
+        return back()->with('info', "Now u can see " . User::find($user_id)->name . "\' posts.");
     }
 
     public function unfollow()
@@ -36,11 +37,12 @@ class UserController extends Controller
         request()->validate([
             'user_id' => "exists:users,id"
         ]);
+        $user_id = request('user_id');
 
-        if (Follower::where('user_id', request('user_id'))->where('follower_id', Auth::id())->exists()) {
-            $f = Follower::where('user_id', request('user_id'))->where('follower_id', Auth::id())->first();
+        if (Follower::where('user_id', $user_id)->where('follower_id', Auth::id())->exists()) {
+            $f = Follower::where('user_id', $user_id)->where('follower_id', Auth::id())->first();
             $f->delete();
-            return back();
+            return back()->with('info', "Unfollowed " . User::find($user_id)->name);
         } else {
             return back();
         }
@@ -108,10 +110,13 @@ class UserController extends Controller
     public function edit(User $user)
     {
         Gate::authorize('update-user', $user);
-        return view('Auth.Users.edit', ['user' => $user, 'breadcrumb_links' => [
-            $user->name => route('users.show', $user->username),
-            'Edit' => ''
-        ]]);
+        return view('Auth.Users.edit', [
+            'user' => $user,
+            'breadcrumb_links' => [
+                $user->name => route('users.show', $user->username),
+                'Edit' => ''
+            ]
+        ]);
     }
 
     public function update(User $user)
@@ -142,6 +147,7 @@ class UserController extends Controller
 
         $user->update();
 
-        return back();
+        return redirect()->route('users.show', $user->username)
+            ->with("success", "Your Profile is updated");
     }
 }

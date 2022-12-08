@@ -3,7 +3,9 @@ import "../sass/app.scss"
 import "venobox/dist/venobox.css";
 import VenoBox from "venobox"
 import * as bootstrap from 'bootstrap'
-//modal
+
+import Swal from 'sweetalert2'
+
 
 
 // show/hide comments functions
@@ -23,3 +25,24 @@ window.hideComments = (id) => {
 new VenoBox({
     selector: '.venobox'
 })
+
+//sweet alert
+window.showToast = (msg, icon = 'success') => {
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'bottom-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    })
+
+    Toast.fire({
+        icon,
+        title: msg
+    })
+
+}

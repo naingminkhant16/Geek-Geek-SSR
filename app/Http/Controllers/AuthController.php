@@ -6,6 +6,7 @@ use App\Mail\EmailVerify;
 use App\Models\Follower;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -30,7 +31,8 @@ class AuthController extends Controller
             'email' => 'Your email is not verified yet!'
         ]);
 
-        if (auth()->attempt($formData)) return redirect()->route('home');
+        if (auth()->attempt($formData))
+            return redirect()->route('home')->with('success', "Successfully Login.Welcome Back 👋");
 
         return back()->withErrors([
             'password' => 'Your email or password is incorrect!'
@@ -50,13 +52,15 @@ class AuthController extends Controller
             'password' => [
                 'required',
                 "confirmed",
-                Password::min(8)->letters()->mixedCase()->numbers()->symbols()
+                Password::min(8)
+                // ->letters()->mixedCase()->numbers()->symbols()
             ],
             'date_of_birth' => 'required|date|before:today',
         ]);
 
         $formData['username'] = $formData['name'];
         $formData['password'] = Hash::make($formData['password']);
+        $formData['profile'] = 'default_pp.png';
 
         $user = User::create($formData);
 
@@ -70,20 +74,20 @@ class AuthController extends Controller
 
         Mail::to($user->email)->send(new EmailVerify($user, Cache::get('email_verify_token_' . $user->id)));
 
-        return redirect()->route('login');
+        return redirect()->route('login')->with('success', 'Successfully registered.You can now login.');
     }
 
     public function logout()
     {
         auth()->logout();
-        return redirect()->route('login');
+        return redirect()->route('login')->with('info', "Successfully Logout! See ya.");
     }
 
     public function verifyEmail(User $user, $token)
     {
         if (Cache::get('email_verify_token_' . $user->id) === $token) {
             $user->email_verified_at = now();
-            $user->save();
+            $user->update();
 
             if (!auth()->check())
                 auth()->login($user);
