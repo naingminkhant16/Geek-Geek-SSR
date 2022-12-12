@@ -6,7 +6,8 @@
             <div class="col-12 col-lg-6">
                 <div class=" bg-white rounded p-3 shadow">
                     <div class="text-center">
-                        <img src="{{asset('storage/'.$user->profile)}}" alt="" width="400" class="img-fluid">
+                        <img src="{{asset('storage/'.$user->profile)}}" alt="" id="preview" width="400"
+                            class="img-fluid rounded">
                     </div>
                     <form action="{{route('users.update',$user->id)}}" class="mt-3" method="POST"
                         enctype="multipart/form-data">
@@ -30,6 +31,7 @@
                                 <strong class="">*{{ $message }}</strong>
                             </span>
                             @enderror
+                            {{-- <img src="#" alt="" id="preview" class="img-thumbnail"> --}}
                         </div>
                         <div class="mb-3 text-end">
                             <a class="btn btn-danger text-white" href="/">Cancel</a>
@@ -40,4 +42,16 @@
             </div>
         </div>
     </div>
+    @push('scripts')
+    <script>
+        const profile=document.getElementById('profile')
+        const preview=document.getElementById('preview')
+        profile.onchange=ent=>{
+            const [file]=profile.files
+            if(file){
+                preview.src=URL.createObjectURL(file)
+            }
+        }
+    </script>
+    @endpush
 </x-layout>
