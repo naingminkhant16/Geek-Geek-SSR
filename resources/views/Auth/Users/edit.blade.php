@@ -44,12 +44,12 @@
     </div>
     @push('scripts')
     <script>
-        const profile=document.getElementById('profile')
-        const preview=document.getElementById('preview')
-        profile.onchange=ent=>{
-            const [file]=profile.files
-            if(file){
-                preview.src=URL.createObjectURL(file)
+        const profile = document.getElementById('profile')
+        const preview = document.getElementById('preview')
+        profile.onchange = event => {
+            const [file] = profile.files
+            if (file) {
+                preview.src = URL.createObjectURL(file)
             }
         }
     </script>
