@@ -46,17 +46,17 @@
                         style="background-image:url({{asset('storage/'.$photo->name)}});height:400px;background-position:center;">
                         <div class="position-absolute end-0 m-1">
                             <button type="button" class="btn btn-white text-white" data-bs-toggle="modal"
-                                data-bs-target="#photoDeleteConfirmModal">
+                                data-bs-target="#photoDeleteConfirmModal{{$photo->id}}">
                                 <i class="bi bi-x-lg fs-5"></i>
                             </button>
                         </div>
 
-                        <form action="{{route('post-photos.delete',$photo->id)}}" class="d-none"
+                        <form action="{{route('post-photos.delete',$photo->id)}}" class="d-inline-block"
                             id="photoDeleteForm{{$photo->id}}" method="POST" enctype="multipart/form-data">
                             @csrf @method('delete')
                         </form>
-
-                        <x-modal id="photoDeleteConfirmModal">
+                        {{-- confirm modal for photo delete --}}
+                        <x-modal id="photoDeleteConfirmModal{{$photo->id}}">
                             <div class="text-center">
                                 <h5>Are u sure u want to delete?</h5>
                                 <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">No</button>
