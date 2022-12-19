@@ -31,7 +31,7 @@
                         @method('delete')
                     </form>
                     <button class="dropdown-item text-danger" data-bs-toggle="modal"
-                        data-bs-target="#postDeleteConfirmModal">
+                        data-bs-target="#postDeleteConfirmModal{{$post->id}}">
                         <i class="bi bi-trash"></i> Delete Post
                     </button>
                 </li>
@@ -41,7 +41,7 @@
     </div>
 
     @can('delete',$post)
-    <x-modal id="postDeleteConfirmModal">
+    <x-modal id="postDeleteConfirmModal{{$post->id}}">
         <div class="text-center">
             <h5>Are u sure u want to delete?</h5>
             <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">No</button>
