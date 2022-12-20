@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\OAuthController;
@@ -57,6 +58,11 @@ Route::middleware('guest')->controller(AuthController::class)->group(function ()
     //register
     Route::get('/register', 'register')->name('register');
     Route::post('/register', 'attemptRegister')->name('attemptRegister');
+});
+
+//Admin Routes
+Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
+    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard.index');
 });
 
 //verify email

@@ -31,4 +31,19 @@ $white:#FFF;
 //     background: #555;
 //   }
 
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.dashboard-link:hover{
+background-color: #effbff48;
+}
+
+.dashboard-link-exit:hover{
+   background-color: #fe4848c5;
+   color: $white;
+    }
+
 @import "bootstrap/scss/bootstrap";
