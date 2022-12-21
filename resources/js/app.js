@@ -46,3 +46,6 @@ window.showToast = (msg, icon = 'success') => {
     })
 
 }
+
+//charts js admin dashboard
+import "./admin/charts";

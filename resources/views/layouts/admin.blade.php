@@ -33,24 +33,7 @@
                             </div>
                         </div>
                         <div class="col-lg-12">
-                            <div class="text-center">
-                                <a href=""
-                                    class="d-block p-3 rounded-3 text-decoration-none text-white dashboard-link mx-5">
-                                    <i class="bi bi-house-fill"></i>
-                                    Dashboard</a>
-                                <a href=""
-                                    class="d-block p-3 rounded-3 text-decoration-none text-white dashboard-link  mx-5">
-                                    <i class="bi bi-file-post"></i>
-                                    Posts</a>
-                                <a href=""
-                                    class="d-block p-3 rounded-3 text-decoration-none text-white dashboard-link  mx-5">
-                                    <i class="bi bi-people-fill"></i>
-                                    Users</a>
-                                <a href=""
-                                    class="d-block p-3 rounded-3 text-decoration-none text-white dashboard-link  mx-5">
-                                    <i class="bi bi-envelope-open-fill"></i>
-                                    Emails</a>
-                            </div>
+                            <x-admin.navLink />
                         </div>
                         <div class="col-lg-12">
                             <div class="text-center">
@@ -64,7 +47,7 @@
             </div>
             <div class="col-12 col-lg-10">
                 <div class="bg-light min-vh-100">
-                    {{-- nav --}}
+                    {{--mobile nav --}}
                     <nav class=" d-lg-none navbar navbar-expand-lg bg-white">
                         <div class="container-fluid">
                             <a class="navbar-brand" href="{{route('dashboard.index')}}">
@@ -95,24 +78,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">
-                                                <div class="text-center">
-                                                    <a href=""
-                                                        class="d-block p-3 rounded-3 text-decoration-none text-white dashboard-link mx-5">
-                                                        <i class="bi bi-house-fill"></i>
-                                                        Dashboard</a>
-                                                    <a href=""
-                                                        class="d-block p-3 rounded-3 text-decoration-none text-white dashboard-link  mx-5">
-                                                        <i class="bi bi-file-post"></i>
-                                                        Posts</a>
-                                                    <a href=""
-                                                        class="d-block p-3 rounded-3 text-decoration-none text-white dashboard-link  mx-5">
-                                                        <i class="bi bi-people-fill"></i>
-                                                        Users</a>
-                                                    <a href=""
-                                                        class="d-block p-3 rounded-3 text-decoration-none text-white dashboard-link  mx-5">
-                                                        <i class="bi bi-envelope-open-fill"></i>
-                                                        Emails</a>
-                                                </div>
+                                                <x-admin.navLink />
                                             </div>
                                             <div class="col-lg-12">
                                                 <div class="text-center mt-3">
@@ -128,11 +94,15 @@
                         </div>
                     </nav>
                     {{-- content --}}
-                    @yield('content')
+                    <div class="px-0 py-3 p-lg-3 overflow-auto vh-100">
+                        @yield('content')
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    @stack('scripts')
+
 </body>
 
 </html>

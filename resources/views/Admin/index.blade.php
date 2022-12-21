@@ -2,5 +2,83 @@
 @section('title',"Dashboard")
 
 @section('content')
-<h1>This is dashboard</h1>
+<div class="container-fluid">
+    <div class="row g-3">
+        <div class="col-12 col-lg-3">
+            <div class="bg-primary bg-gradient bg-opacity-75 p-4 rounded-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="">
+                        <h3 class="text-black-50">100</h3>
+                        <span class="text-black-50">Total Users</span>
+                    </div>
+                    <div class="">
+                        <i class="bi bi-person-fill fs-1 text-black-50"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-3">
+            <div class="bg-success bg-gradient bg-opacity-75 p-4 rounded-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="">
+                        <h3 class="text-black-50">56</h3>
+                        <span class="text-black-50">Total Posts</span>
+                    </div>
+                    <div class="">
+                        <i class="bi bi-file-post fs-1 text-black-50"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-3">
+            <div class="bg-danger bg-gradient bg-opacity-75 p-4 rounded-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="">
+                        <h3 class="text-white">89</h3>
+                        <span class="text-white">Total Likes</span>
+                    </div>
+                    <div class="">
+                        <i class="bi bi-heart-fill fs-1 text-white"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-3">
+            <div class="bg-warning bg-gradient bg-opacity-75 p-4 rounded-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="">
+                        <h3 class="text-black-50">43</h3>
+                        <span class="text-black-50">Total Comments</span>
+                    </div>
+                    <div class="">
+                        <i class="bi bi-chat-left-text-fill fs-1 text-black-50"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row g-3 mt-1">
+        {{-- generate chart html ui --}}
+        @foreach ($data as $key=>$chart)
+        <div class="col-12 col-lg-6">
+            <div class="p-3 bg-white rounded-3">
+                <canvas id="chart{{$key}}"></canvas>
+            </div>
+        </div>
+        @endforeach
+
+    </div>
+</div>
+</div>
+@push('scripts')
+<script type="module">
+    // generate data to show chart
+    @foreach ($data as $key=>$chart)
+
+    showChart('{!! $chart !!}','chart{{$key}}','{{$key}}')
+
+    @endforeach
+</script>
+@endpush
+
 @endsection
