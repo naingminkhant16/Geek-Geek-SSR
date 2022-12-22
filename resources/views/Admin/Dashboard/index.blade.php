@@ -5,7 +5,7 @@
 <div class="container-fluid">
     <div class="row g-3">
         <div class="col-12 col-lg-3">
-            <div class="bg-primary bg-gradient bg-opacity-75 p-4 rounded-3">
+            <div class="bg-primary bg-gradient bg-opacity-75 p-4 rounded-3 shadow">
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="">
                         <h3 class="text-black-50">{{$data['Users']->sum()}}</h3>
@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="col-12 col-lg-3">
-            <div class="bg-success bg-gradient bg-opacity-75 p-4 rounded-3">
+            <div class="bg-success bg-gradient bg-opacity-75 p-4 rounded-3 shadow">
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="">
                         <h3 class="text-black-50">{{$data['Posts']->sum()}}</h3>
@@ -31,7 +31,7 @@
             </div>
         </div>
         <div class="col-12 col-lg-3">
-            <div class="bg-danger bg-gradient bg-opacity-75 p-4 rounded-3">
+            <div class="bg-danger bg-gradient bg-opacity-75 p-4 rounded-3 shadow">
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="">
                         <h3 class="text-white">{{$data['Likes']->sum()}}</h3>
@@ -44,7 +44,7 @@
             </div>
         </div>
         <div class="col-12 col-lg-3">
-            <div class="bg-warning bg-gradient bg-opacity-75 p-4 rounded-3">
+            <div class="bg-warning bg-gradient bg-opacity-75 p-4 rounded-3 shadow">
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="">
                         <h3 class="text-black-50">{{$data['Comments']->sum()}}</h3>
@@ -61,7 +61,7 @@
         {{-- generate chart html ui --}}
         @foreach ($data as $key=>$chart)
         <div class="col-12 col-lg-6">
-            <div class="p-3 bg-white rounded-3">
+            <div class="p-3 bg-white rounded-3 shadow">
                 <canvas id="chart{{$key}}"></canvas>
             </div>
         </div>

@@ -24,7 +24,7 @@ class AdminDashboardController extends Controller
 
         $data = [...$users, ...$posts, ...$likes, ...$comments];
 
-        return  view('Admin.index', ['data' => $data]);
+        return  view('Admin.Dashboard.index', ['data' => $data]);
     }
 
     public function getDataCountByDate(Object $obj, $label)
