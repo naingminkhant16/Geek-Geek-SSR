@@ -8,7 +8,7 @@
             <div class="bg-primary bg-gradient bg-opacity-75 p-4 rounded-3">
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="">
-                        <h3 class="text-black-50">100</h3>
+                        <h3 class="text-black-50">{{$data['Users']->sum()}}</h3>
                         <span class="text-black-50">Total Users</span>
                     </div>
                     <div class="">
@@ -21,7 +21,7 @@
             <div class="bg-success bg-gradient bg-opacity-75 p-4 rounded-3">
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="">
-                        <h3 class="text-black-50">56</h3>
+                        <h3 class="text-black-50">{{$data['Posts']->sum()}}</h3>
                         <span class="text-black-50">Total Posts</span>
                     </div>
                     <div class="">
@@ -34,7 +34,7 @@
             <div class="bg-danger bg-gradient bg-opacity-75 p-4 rounded-3">
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="">
-                        <h3 class="text-white">89</h3>
+                        <h3 class="text-white">{{$data['Likes']->sum()}}</h3>
                         <span class="text-white">Total Likes</span>
                     </div>
                     <div class="">
@@ -47,7 +47,7 @@
             <div class="bg-warning bg-gradient bg-opacity-75 p-4 rounded-3">
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="">
-                        <h3 class="text-black-50">43</h3>
+                        <h3 class="text-black-50">{{$data['Comments']->sum()}}</h3>
                         <span class="text-black-50">Total Comments</span>
                     </div>
                     <div class="">
