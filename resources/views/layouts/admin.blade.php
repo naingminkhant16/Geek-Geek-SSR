@@ -102,7 +102,23 @@
         </div>
     </div>
     @stack('scripts')
+    <script type="module">
+        @if (Session::has('success'))
+        showToast(" {{session('success')}} ")
 
+        @elseif (Session::has('error'))
+        showToast(" {{session('error')}} ",'error')
+
+        @elseif (Session::has('warning'))
+        showToast(" {{session('warning')}} ",'warning')
+
+        @elseif (Session::has('info'))
+        showToast(" {{session('info')}} ",'info')
+
+        @else
+
+        @endif
+    </script>
 </body>
 
 </html>

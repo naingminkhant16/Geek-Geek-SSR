@@ -184,7 +184,7 @@ class PostController extends Controller
             $post->likes()->delete();
         }
 
-        $post->delete();
+        $post->forceDelete();
 
         return redirect()->route('home')->with('success', 'Your post is successfully deleted.');
     }

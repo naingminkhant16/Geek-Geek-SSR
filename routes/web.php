@@ -68,6 +68,12 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
     //Posts Management
     Route::get('/posts', [AdminPostController::class, 'index'])->name('admin.posts.index');
+    //show deleted posts
+    Route::get('/posts/deleted-posts', [AdminPostController::class, 'deletedPosts'])->name('admin.posts.deletedPosts');
+    //soft delete route
+    Route::delete('/posts/{post}/soft-delete', [AdminPostController::class, 'softDelete'])->name('admin.posts.softDelete');
+    //force delete route
+    Route::delete('/posts/{id}', [AdminPostController::class, 'destroy'])->name('admin.posts.destroy');
 });
 
 //verify email

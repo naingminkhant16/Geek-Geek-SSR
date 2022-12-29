@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title','Posts')
+@section('title','Deleted Posts')
 @section('content')
 <div class="container-fluid">
     <div class="row">
@@ -7,7 +7,7 @@
             <div class="d-flex justify-content-between align-items-center bg-white rounded-3 p-3 shadow">
                 <div class="">
                     <a href="{{route('admin.posts.index')}}" class="mb-0 text-decoration-none
-                        text-primary
+                        text-black-50
                         ">
                         <span class="">
                             <i class="bi bi-file-post"></i>
@@ -15,8 +15,7 @@
                         </span>
                     </a>
                     <span class="text-black-50">|</span>
-                    <a href="{{route('admin.posts.deletedPosts')}}" class="mb-0 text-decoration-none
-                        text-black-50">
+                    <a href="{{route('admin.posts.deletedPosts')}}" class="mb-0 text-decoration-none text-primary">
                         <span class="">
                             Deleted Posts
                             <i class="bi bi-trash-fill"></i>
@@ -38,7 +37,7 @@
         </div>
         <div class="col-12">
             <div class="mt-3 shadow p-3 rounded-3 bg-white">
-                @foreach ($posts as $post)
+                @foreach ($deletedPosts as $post)
                 <div class="row mb-3 align-items-center border-bottom p-3">
                     <div class="col-12 col-lg-4 mb-3">
                         @if ($post->photos->count())
@@ -81,16 +80,12 @@
                         </p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="">
-                                <a href="{{route('posts.edit',$post->id)}}"
-                                    class="text-decoration-none btn btn-sm btn-primary me-1">
-                                    <i class="bi bi-pencil-fill text-white"></i>
-                                </a>
                                 <a href="{{route('posts.show',$post->id)}}"
                                     class="text-decoration-none btn btn-sm btn-success me-1">
-                                    <i class="bi bi-eye-fill text-white"></i>
+                                    <i class="bi bi-arrow-clockwise text-white"></i>
                                 </a>
-                                <form action="{{route('admin.posts.softDelete',$post->id)}}" class="d-none"
-                                    method="POST" id="deletePost{{$post->id}}">
+                                <form action="{{route('admin.posts.destroy',$post->id)}}" class="d-none" method="POST"
+                                    id="deletePost{{$post->id}}">
                                     @csrf
                                     @method('delete')
                                 </form>
@@ -108,7 +103,7 @@
                 </div>
                 @endforeach
                 <div class="">
-                    {{$posts->links()}}
+                    {{$deletedPosts->links()}}
                 </div>
             </div>
         </div>
