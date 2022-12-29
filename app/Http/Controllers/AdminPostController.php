@@ -22,17 +22,6 @@ class AdminPostController extends Controller
             ->with(['user', 'comments.user', 'likes', 'photos'])
             ->paginate(6);
 
-        // $deletedPosts = Post::when(request('search'), function ($query, $search) {
-        //     $query->where('status', "LIKE", "%$search%")
-        //         //get posts by user's name
-        //         ->orWhereHas('user', function ($query) use ($search) {
-        //             $query->where('name', 'LIKE', "%$search%");
-        //         });
-        // })->with(['user', 'comments.user', 'likes', 'photos'])
-        //     ->onlyTrashed()->latest()
-        //     ->paginate(6);
-
-
         return view('Admin.Post.index', [
             'posts' => $posts
         ]);
@@ -41,13 +30,20 @@ class AdminPostController extends Controller
     public function deletedPosts()
     {
         $deletedPosts = Post::when(request('search'), function ($query, $search) {
-            $query->where('status', "LIKE", "%$search%")
-                //get posts by user's name
-                ->orWhereHas('user', function ($query) use ($search) {
-                    $query->where('name', 'LIKE', "%$search%");
-                });
-        })->with(['user', 'comments.user', 'likes', 'photos'])
-            ->onlyTrashed()->latest()
+            $query->where(function ($query) use ($search) { //group where
+                $query->where('status', "LIKE", "%$search%")
+                    //get posts by user's name
+                    ->orWhereHas('user', function ($query) use ($search) {
+                        $query->where('name', 'LIKE', "%$search%");
+                    });
+            });
+        })->with([
+            'user',
+            'comments.user',
+            'likes',
+            'photos'
+        ])->onlyTrashed()
+            ->latest()
             ->paginate(6);
 
         return view('Admin.Post.deletedPosts', [
@@ -57,8 +53,22 @@ class AdminPostController extends Controller
 
     public function softDelete(Post $post)
     {
-        $post->delete();
-        return back()->with('warning', "Post is temporarily deleted");
+        $status = $post->delete();
+
+        if ($status)
+            return back()->with('warning', "Post is temporarily deleted");
+        else
+            return abort(403);
+    }
+
+    public function restore($id)
+    {
+        $status = Post::onlyTrashed()->findOrFail($id)->restore();
+
+        if ($status)
+            return back()->with('success', "Successfully restored!");
+        else
+            return abort(500);
     }
 
     public function destroy($id)

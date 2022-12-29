@@ -74,6 +74,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::delete('/posts/{post}/soft-delete', [AdminPostController::class, 'softDelete'])->name('admin.posts.softDelete');
     //force delete route
     Route::delete('/posts/{id}', [AdminPostController::class, 'destroy'])->name('admin.posts.destroy');
+    //restore route
+    Route::patch('/posts/{id}/restore', [AdminPostController::class, 'restore'])->name('admin.posts.restore');
 });
 
 //verify email

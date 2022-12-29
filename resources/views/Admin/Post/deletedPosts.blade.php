@@ -80,10 +80,16 @@
                         </p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="">
-                                <a href="{{route('posts.show',$post->id)}}"
+                                <form action="{{route('admin.posts.restore',$post->id)}}" class="d-none" method="POST"
+                                    id="restorePost{{$post->id}}">
+                                    @csrf
+                                    @method('PATCH')
+                                </form>
+                                <button form="restorePost{{$post->id}}" type="submit"
                                     class="text-decoration-none btn btn-sm btn-success me-1">
-                                    <i class="bi bi-arrow-clockwise text-white"></i>
-                                </a>
+                                    <i class="bi bi-arrow-clockwise  text-white"></i>
+                                </button>
+
                                 <form action="{{route('admin.posts.destroy',$post->id)}}" class="d-none" method="POST"
                                     id="deletePost{{$post->id}}">
                                     @csrf
