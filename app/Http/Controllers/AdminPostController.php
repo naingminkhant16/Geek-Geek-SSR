@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 
 class AdminPostController extends Controller
@@ -19,7 +18,7 @@ class AdminPostController extends Controller
                 });
         })
             ->latest()
-            ->with(['user', 'comments.user', 'likes', 'photos'])
+            ->with(['user', 'photos'])
             ->paginate(6);
 
         return view('Admin.Post.index', [
@@ -38,10 +37,7 @@ class AdminPostController extends Controller
                     });
             });
         })->with([
-            'user',
-            'comments.user',
-            'likes',
-            'photos'
+            'user', 'photos'
         ])->onlyTrashed()
             ->latest()
             ->paginate(6);

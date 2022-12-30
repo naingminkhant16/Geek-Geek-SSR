@@ -113,6 +113,8 @@
             </div>
         </div>
     </div>
+    <a href="{{route('posts.create')}}" class="position-fixed" style="right:30px;bottom:30px;font-size:50px"><i
+            class="bi bi-plus-circle-fill"></i></a>
 </div>
 
 @endsection
