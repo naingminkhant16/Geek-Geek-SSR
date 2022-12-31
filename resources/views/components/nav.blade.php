@@ -16,12 +16,14 @@
                             Profile
                         </a>
                     </li>
+                    @if (auth()->user()->is_admin)
                     <li class="">
                         <a href="{{route('dashboard.index')}}" class="dropdown-item">
                             <i class="bi bi-bar-chart"></i>
                             Dashboard
                         </a>
                     </li>
+                    @endif
                     <li class="">
                         <button type="submit" class="dropdown-item text-danger" form="logout">
                             <i class="bi bi-box-arrow-right me-1"></i>Logout</button>

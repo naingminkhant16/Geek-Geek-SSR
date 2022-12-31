@@ -17,6 +17,10 @@ class AdminPostController extends Controller
                     $query->where('name', 'LIKE', "%$search%");
                 });
         })
+            ->orWhereHas('user', function ($query) {
+                //if user is deleted temporarily deleted, his posts will not be shown
+                $query->where('deleted_at', NULL);
+            })
             ->latest()
             ->with(['user', 'photos'])
             ->paginate(6);
@@ -38,7 +42,12 @@ class AdminPostController extends Controller
             });
         })->with([
             'user', 'photos'
-        ])->onlyTrashed()
+        ])
+            ->orWhereHas('user', function ($query) {
+                //if user is deleted temporarily deleted, his posts will not be shown
+                $query->where('deleted_at', NULL);
+            })
+            ->onlyTrashed()
             ->latest()
             ->paginate(6);
 
@@ -54,7 +63,7 @@ class AdminPostController extends Controller
         if ($status)
             return back()->with('warning', "Post is temporarily deleted");
         else
-            return abort(403);
+            return abort(500);
     }
 
     public function restore($id)

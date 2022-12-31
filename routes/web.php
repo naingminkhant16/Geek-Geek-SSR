@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminPostController;
+use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\OAuthController;
@@ -76,6 +77,19 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::delete('/posts/{id}', [AdminPostController::class, 'destroy'])->name('admin.posts.destroy');
     //restore route
     Route::patch('/posts/{id}/restore', [AdminPostController::class, 'restore'])->name('admin.posts.restore');
+
+    //User Management
+    Route::get('/users', [AdminUserController::class, 'index'])->name('admin.users.index');
+    //Change Role
+    Route::patch('/users/{user:username}/change-role', [AdminUserController::class, 'changeRole'])->name('admin.users.changeRole');
+    //Soft Delete
+    Route::delete('/users/{user}/soft-delete', [AdminUserController::class, 'softDelete'])->name('admin.users.softDelete');
+    //show deleted users
+    Route::get('/users/deleted-users', [AdminUserController::class, 'deletedUsers'])->name('admin.users.deletedUsers');
+    //force delete route
+    Route::delete('/users/{id}', [AdminUserController::class, 'destroy'])->name('admin.users.destroy');
+    //restore route
+    Route::patch('/users/{id}/restore', [AdminUserController::class, 'restore'])->name('admin.users.restore');
 });
 
 //verify email
