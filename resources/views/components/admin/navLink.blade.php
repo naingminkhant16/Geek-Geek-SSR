@@ -13,7 +13,7 @@ text-white-50
                 @endif">
         <i class="bi bi-file-post"></i>
         Posts</a>
-    <a href="{{route('admin.users.index')}}" class="d-block p-3 rounded-3 text-decoration-none dashboard-link  mx-5 @if (request()->routeIs('admin.users.index'))
+    <a href="{{route('admin.users.index')}}" class="d-block p-3 rounded-3 text-decoration-none dashboard-link  mx-5 @if (request()->routeIs('admin.users.index','admin.users.create'))
     text-white
     @else
     text-white-50

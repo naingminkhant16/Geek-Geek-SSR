@@ -56,9 +56,12 @@
                                 @endif
                             </td>
                             <td>
-                                {!!$user->email_verified_at?
-                                '<i class="bi bi-check-lg text-success fs-5"></i>':
-                                '<i class="bi bi-x-lg text-danger fs-5"></i>';!!}
+                                @if ($user->email_verified_at)
+                                <i class="bi bi-check-lg text-success fs-5"></i>
+                                @else
+                                <i class="bi bi-x-lg text-danger fs-5"></i>
+                                <a href="" class="text-decoration-none"><small>Send Mail</small></a>
+                                @endif
                             </td>
                             <td class="">
                                 <a href="{{route('users.edit',$user->username)}}"
@@ -91,7 +94,7 @@
             </div>
         </div>
     </div>
-    <a href="" class="position-fixed" style="right:30px;bottom:30px;font-size:50px"><i
+    <a href="{{route('admin.users.create')}}" class="position-fixed" style="right:30px;bottom:30px;font-size:50px"><i
             class="bi bi-plus-circle-fill"></i></a>
 </div>
 

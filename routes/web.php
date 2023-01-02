@@ -80,6 +80,10 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
     //User Management
     Route::get('/users', [AdminUserController::class, 'index'])->name('admin.users.index');
+    //Create New User
+    Route::get('/users/create', [AdminUserController::class, 'create'])->name('admin.users.create');
+    //Store new user
+    Route::post('/users', [AdminUserController::class, 'store'])->name('admin.users.store');
     //Change Role
     Route::patch('/users/{user:username}/change-role', [AdminUserController::class, 'changeRole'])->name('admin.users.changeRole');
     //Soft Delete
