@@ -46,6 +46,9 @@ class AdminUserController extends Controller
             'bio' => 'nullable|min:3|max:100',
             'is_admin' => 'required|boolean',
             'email_verified_at' => "nullable"
+        ], [
+            'is_admin.required' => "Role must be choosed!",
+            'is_admin.boolean' => "Invalid Value!"
         ]);
 
         $user = new User;
