@@ -11,6 +11,25 @@ window.showChart = function (chart, id, label) {
 
     const ctx = document.getElementById(id);
 
+    //color
+    let backgroundColor;
+    switch (label) {
+        case "Users":
+            backgroundColor = "rgba(0, 187, 240,0.75)";
+            break;
+        case "Posts":
+            backgroundColor = "rgba(69, 235, 165,0.75)";
+            break;
+        case "Likes":
+            backgroundColor = "rgba(220, 53, 69,0.75)";
+            break;
+        case "Comments":
+            backgroundColor = "rgba(255, 193, 7,0.75)";
+            break;
+        default:
+            backgroundColor = "#9BD0F5";
+    }
+
     new Chart(ctx, {
         type: 'bar',
         data: {
@@ -18,7 +37,8 @@ window.showChart = function (chart, id, label) {
             datasets: [{
                 label,
                 data,
-                borderWidth: 1
+                borderWidth: 1,
+                backgroundColor,
             }]
         },
         options: {

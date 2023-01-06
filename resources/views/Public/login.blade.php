@@ -4,10 +4,10 @@
     </x-slot:title>
     <div class="row justify-content-center align-items-center">
         <div class="col-12 col-lg-5">
-            <div class="bg-white shadow d-flex align-items-center justify-content-center rounded p-4 p-lg-5 ">
+            <div class="bg-white shadow d-flex align-items-center justify-content-center rounded-3 p-4 p-lg-5 ">
                 <div class="" style="">
                     <h3 class="text-center mb-4">Be Ready To <span
-                            class="text-white border p-2 rounded rounded-2 bg-primary border-0 m-1">Geek</span>.
+                            class="text-white border p-2 rounded-3 bg-primary border-0 m-1">Geek</span>.
                         Login Now!
                     </h3>
                     <hr>

@@ -4,7 +4,7 @@
     <div class="">
         <div class="row justify-content-center">
             <div class="col-12 col-lg-6">
-                <div class="bg-white shadow p-4 rounded">
+                <div class="bg-white shadow p-4 rounded-3">
                     <h3 class="text-black">Share Your Feelings</h3>
                     <hr>
                     <form action="{{route('posts.store')}}" method="POST" id="postCreateForm"
@@ -55,7 +55,7 @@
             if(file){
                 let img = document.createElement('img')
                 img.src=URL.createObjectURL(file)
-                img.classList.add('img-fluid','mb-3','rounded','w-100')
+                img.classList.add('img-fluid','mb-3','rounded-3','w-100')
 
                 parentDiv.append(img);
             }

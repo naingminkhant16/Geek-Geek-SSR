@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg bg-white navbar-white border-bottom border-opacity-10 border-light sticky-top">
     <div class="container">
         <a class="navbar-brand" href="/">
-            <span class="text-white border p-2 rounded rounded-2 bg-primary border-0 m-1">Geek</span></a>
+            <span class="text-white border p-2  rounded-3 bg-primary border-0 m-1">Geek</span></a>
 
         <div class="d-flex justify-content-center align-items-center">
             @auth

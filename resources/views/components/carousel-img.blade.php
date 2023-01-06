@@ -4,7 +4,7 @@
         @foreach ($post->photos as $photo)
         <div class="carousel-item @if($loop->first) active @endif">
             <a href="{{asset('storage/'.$photo->name)}}" class="venobox">
-                <img src="{{asset('storage/'.$photo->name)}}" class="d-block w-100 rounded"
+                <img src="{{asset('storage/'.$photo->name)}}" class="d-block w-100 rounded-3"
                     style="height:360px;object-fit:cover;">
             </a>
         </div>

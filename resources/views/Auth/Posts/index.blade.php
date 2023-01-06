@@ -13,7 +13,7 @@
             <div class="col-lg-6">
                 <div class="d-flex justify-content-center">
                     <div class="w-100 overflow-auto px-lg-3" style="height: 820px">
-                        <div class="bg-white p-3 rounded shadow w-100 mb-3">
+                        <div class="bg-white p-3 rounded-3 shadow w-100 mb-3">
                             <h6 class="border-bottom pb-2 mb-2">Post Something</h6>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>

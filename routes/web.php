@@ -66,6 +66,7 @@ Route::middleware('guest')->controller(AuthController::class)->group(function ()
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     //Dashboard
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard.index');
+    Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard.index');
 
     //Posts Management
     Route::get('/posts', [AdminPostController::class, 'index'])->name('admin.posts.index');
@@ -94,6 +95,9 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::delete('/users/{id}', [AdminUserController::class, 'destroy'])->name('admin.users.destroy');
     //restore route
     Route::patch('/users/{id}/restore', [AdminUserController::class, 'restore'])->name('admin.users.restore');
+
+    //Email Management
+    Route::get('/emails');
 });
 
 //verify email

@@ -4,10 +4,10 @@
     <div class="">
         <div class="row justify-content-center">
             <div class="col-12 col-lg-6">
-                <div class=" bg-white rounded p-3 shadow">
+                <div class=" bg-white rounded-3 p-3 shadow">
                     <div class="text-center">
                         <img src="{{asset('storage/'.$user->profile)}}" alt="" id="preview" width="400"
-                            class="img-fluid rounded">
+                            class="img-fluid rounded-3">
                     </div>
                     <form action="{{route('users.update',$user->id)}}" class="mt-3" method="POST"
                         enctype="multipart/form-data">

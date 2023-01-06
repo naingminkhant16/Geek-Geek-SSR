@@ -6,7 +6,7 @@
     <div class="">
         <div class="row justify-content-center">
             <div class="col-12 col-lg-6 ">
-                <div class=" bg-white shadow p-3 rounded">
+                <div class=" bg-white shadow p-3 rounded-3">
 
                     <div class="d-flex align-items-center mb-3">
                         <x-avatar :path="$post->user->profile" />
@@ -42,7 +42,7 @@
                         </div>
                     </form>
                     @forelse ($post->photos as $photo)
-                    <div class="position-relative mb-3 rounded"
+                    <div class="position-relative mb-3 rounded-3"
                         style="background-image:url({{asset('storage/'.$photo->name)}});height:400px;background-position:center;">
                         <div class="position-absolute end-0 m-1">
                             <button type="button" class="btn btn-white text-white" data-bs-toggle="modal"

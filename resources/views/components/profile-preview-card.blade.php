@@ -1,5 +1,5 @@
 @props(['user'=>Auth::user()])
-<div class="border rounded p-3 bg-white shadow">
+<div class="border rounded-3 p-3 bg-white shadow">
     <div class="d-flex justify-content-end mb-3">
         @can('update-user',$user)
         <a href="{{route('users.edit',$user->username)}}"><i class="bi bi-pencil-fill"></i></a>

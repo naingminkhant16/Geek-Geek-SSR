@@ -20,7 +20,7 @@
                             <div class="text-center mt-4">
                                 <a class="" href="{{route('dashboard.index')}}">
                                     <span
-                                        class="text-white border p-2 fs-2 rounded rounded-2 bg-primary border-0 m-1">Geek</span></a>
+                                        class="text-white border p-2 fs-2 rounded-3 bg-primary border-0 m-1">Geek</span></a>
                             </div>
                         </div>
                         <div class="col-lg-12">
@@ -52,7 +52,7 @@
                         <div class="container-fluid">
                             <a class="navbar-brand" href="{{route('dashboard.index')}}">
                                 <span
-                                    class="text-white border p-2 fs-2 rounded rounded-2 bg-primary border-0 m-1">Geek</span></a>
+                                    class="text-white border p-2 fs-2  rounded-3 bg-primary border-0 m-1">Geek</span></a>
                             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
                                 data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
                                 <span class="navbar-toggler-icon"></span>

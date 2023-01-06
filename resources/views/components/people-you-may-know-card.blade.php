@@ -1,5 +1,5 @@
 @props(['people','title'=>"People You May Know"])
-<div class="bg-white p-3 rounded shadow w-100">
+<div class="bg-white p-3 rounded-3 shadow w-100">
     <h5>{{$title}}</h5>
     <hr>
     @forelse ($people as $person)
