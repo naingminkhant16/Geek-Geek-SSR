@@ -40,10 +40,15 @@
                             <td>
                                 <x-avatar :path="$user->profile" width="30" /> {{$user->name}}
                             </td>
-                            <td>{{$user->email}} <a href=""><i class="bi bi-envelope-fill"></i></a></td>
+                            <td>{{$user->email}} <a
+                                    href="{{route('admin.emails.create')}}?recipient_mail={{$user->email}}"><i
+                                        class="bi bi-envelope-fill"></i></a></td>
                             <td>
-                                {!!$user->is_admin?'<span class="badge bg-danger">Admin</span>':
-                                '<span class="badge bg-primary">User</span>';!!}
+                                @if ($user->is_admin)
+                                <span class="badge bg-danger">Admin</span>
+                                @else
+                                <span class="badge bg-primary">User</span>
+                                @endif
 
                                 @if ($user->id!==auth()->id())
                                 <form action="{{route('admin.users.changeRole',$user->username)}}" class="d-none"
@@ -60,7 +65,8 @@
                                 <i class="bi bi-check-lg text-success fs-5"></i>
                                 @else
                                 <i class="bi bi-x-lg text-danger fs-5"></i>
-                                <a href="" class="text-decoration-none"><small>Send Mail</small></a>
+                                <a href="{{route('admin.emails.create')}}?recipient_mail={{$user->email}}"
+                                    class="text-decoration-none"><small>Send Mail</small></a>
                                 @endif
                             </td>
                             <td class="">

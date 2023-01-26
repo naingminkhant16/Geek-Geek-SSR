@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\AdminEmailController;
 use App\Http\Controllers\AdminPostController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AuthController;
@@ -97,7 +98,9 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::patch('/users/{id}/restore', [AdminUserController::class, 'restore'])->name('admin.users.restore');
 
     //Email Management
-    Route::get('/emails');
+    Route::get('/emails', [AdminEmailController::class, 'index'])->name('admin.emails.index');
+    Route::get('/emails/create', [AdminEmailController::class, 'create'])->name('admin.emails.create');
+    Route::post('/emails/store', [AdminEmailController::class, 'store'])->name('admin.emails.store');
 });
 
 //verify email

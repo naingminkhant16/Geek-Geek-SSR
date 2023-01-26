@@ -1,6 +1,9 @@
 <x-mail-layout>
+    @slot("title")
+    Please Verify Your <span style="color:#005972">Email</span>.
+    @endslot
     <div style="">
-        <p style="font-weight: bold;text-align:center;margin-bottom:30px">
+        <p style="font-weight: bold;text-align:center;">
             Please click the button below to verify your email in order to login.
         </p>
         <div style="text-align:center">

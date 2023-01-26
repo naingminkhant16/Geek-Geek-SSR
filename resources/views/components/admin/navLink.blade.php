@@ -20,7 +20,7 @@ text-white-50
             @endif">
         <i class="bi bi-people-fill"></i>
         Users</a>
-    <a href="" class="d-block p-3 rounded-3 text-decoration-none dashboard-link  mx-5 @if (false)
+    <a href="{{route('admin.emails.index')}}" class="d-block p-3 rounded-3 text-decoration-none dashboard-link  mx-5 @if (request()->routeIs('admin.emails.index'))
     text-white
     @else
     text-white-50
