@@ -9,39 +9,39 @@
         </p>
     </x-admin.menuBar>
     <div class="mt-3 rounded-3 shadow bg-white p-3">
-        @foreach ($mails as $mail)
-        <div class=" mb-1 border p-3 rounded-3">
+        @foreach ($emails as $email)
+        <div class="email mb-1 border p-3 rounded-3">
             <div class="d-flex justify-content-between align-items-center mb-1">
                 <div class="d-flex align-items-center">
-                    <x-avatar :path="$mail->user->profile??'default_pp.png'" width="38" />
+                    <x-avatar :path="$email->user->profile??'default_pp.png'" width="38" />
                     <div>
                         <a href="" class="text-decoration-none text-black">
-                            <small class="d-block">{{\Str::words($mail->subject,5,'...')}}</small></a>
-                        <small class="text-black-50">to : {{$mail->recipient}}</small>
+                            <small class="d-block">{{\Str::words($email->subject,5,'...')}}</small></a>
+                        <small class="text-black-50">to : {{$email->recipient}}</small>
                     </div>
                 </div>
                 <div class="d-none d-lg-block">
-                    @isset($mail->attach_files)
-                    <small class="text-primary">Attachments ({{count($mail->attach_files)}})</small><br>
+                    @isset($email->attach_files)
+                    <small class="text-primary">Attachments ({{count($email->attach_files)}})</small><br>
                     @endisset
                     <small class="text-black-50">{{Auth::user()->created_at->diffForHumans()}}</small>
                 </div>
             </div>
             <div class="">
                 <small class="text-black-50 mb-1" style="text-align: justify">
-                    {{\Str::words($mail->body,20,'...')}}
+                    {{\Str::words($email->body,20,'...')}}
                 </small>
             </div>
             <div class="d-flex justify-content-between mt-1 d-lg-none">
-                @isset($mail->attach_files)
-                <small class="text-primary">Attachments ({{count($mail->attach_files)}})</small>
+                @isset($email->attach_files)
+                <small class="text-primary">Attachments ({{count($email->attach_files)}})</small>
                 @endisset
                 <small class="text-black-50">{{Auth::user()->created_at->diffForHumans()}}</small>
             </div>
         </div>
         @endforeach
         <div class="mt-3">
-            {{$mails->links()}}
+            {{$emails->links()}}
         </div>
     </div>
     <a href="{{route('admin.emails.create')}}"

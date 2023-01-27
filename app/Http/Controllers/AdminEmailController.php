@@ -11,9 +11,16 @@ class AdminEmailController extends Controller
 {
     public function index()
     {
-        $mails = Email::with(['user:profile'])->latest()->paginate(6)->withQueryString();
+        $emails = Email::with(['user:profile'])
+            ->when(request('search'), function ($query, $search) {
+                $query->where("subject", "LIKE", "%$search%")
+                    ->orWhere("body", "LIKE", "%$search%");
+            })
+            ->latest()
+            ->paginate(6)
+            ->withQueryString();
 
-        return view('Admin.Email.index', ['mails' => $mails]);
+        return view('Admin.Email.index', ['emails' => $emails]);
     }
 
     public function create()
@@ -49,7 +56,7 @@ class AdminEmailController extends Controller
         ]);
 
         //send mail
-        Mail::to($email->recipient)->send(new CustomMail(
+        Mail::to($email->recipient)->queue(new CustomMail(
             $email->subject,
             $email->body,
             $email->attach_files

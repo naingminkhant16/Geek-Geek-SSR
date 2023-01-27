@@ -38,12 +38,16 @@ $white:#FFF;
 }
 
 .dashboard-link:hover{
-background-color: #effbff48;
+background-color: #effbff64;
 }
 
 .dashboard-link-exit:hover{
    background-color: #fe4848c5;
    color: $white;
+    }
+
+    .email:hover{
+        background-color: #bdbdbd30;
     }
 
 @import "bootstrap/scss/bootstrap";

@@ -20,13 +20,14 @@
             <form action="{{route('admin.emails.store')}}" method="POST" enctype="multipart/form-data">
                 @csrf
 
-                <x-input type="email" name="recipient" label="Recipient Mail" :value="request('recipient_mail')??''" />
+                <x-input type="email" name="recipient" label="Recipient Mail"
+                    :value="request('recipient_mail')??old('recipient')" />
 
-                <x-input name="subject" label="Subject" />
+                <x-input name="subject" label="Subject" :value="old('subject')" />
 
                 <div class="form-floating mb-3">
                     <textarea class="form-control  @error('body') is-invalid @enderror" placeholder="Leave a body here"
-                        name="body" style="height: 400px" id="floatingTextarea"></textarea>
+                        name="body" style="height: 400px" id="floatingTextarea">{{old('body')}}</textarea>
                     <label for="floatingTextarea">Write Mail Here...</label>
 
                     @error('body')
