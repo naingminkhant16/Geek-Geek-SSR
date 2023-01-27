@@ -101,6 +101,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/emails', [AdminEmailController::class, 'index'])->name('admin.emails.index');
     Route::get('/emails/create', [AdminEmailController::class, 'create'])->name('admin.emails.create');
     Route::post('/emails/store', [AdminEmailController::class, 'store'])->name('admin.emails.store');
+    Route::get('/emails/{email}', [AdminEmailController::class, "show"])->name("admin.emails.show");
 });
 
 //verify email

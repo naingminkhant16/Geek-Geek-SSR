@@ -11,11 +11,10 @@ class AdminEmailController extends Controller
 {
     public function index()
     {
-        $emails = Email::with(['user:profile'])
-            ->when(request('search'), function ($query, $search) {
-                $query->where("subject", "LIKE", "%$search%")
-                    ->orWhere("body", "LIKE", "%$search%");
-            })
+        $emails = Email::when(request('search'), function ($query, $search) {
+            $query->where("subject", "LIKE", "%$search%")
+                ->orWhere("body", "LIKE", "%$search%");
+        })->with(['user'])
             ->latest()
             ->paginate(6)
             ->withQueryString();
@@ -63,5 +62,10 @@ class AdminEmailController extends Controller
         ));
 
         return redirect()->route('admin.emails.index')->with('success', "Email Successfully Sent.");
+    }
+
+    public function show(Email $email)
+    {
+        return view("Admin.Email.show", ['email' => $email->load('user')]);
     }
 }
