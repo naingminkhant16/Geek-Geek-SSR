@@ -15,6 +15,11 @@
     </div>
     <div class="mt-3 rounded-3 shadow bg-white p-3">
         <x-admin.emailDetail :email="$email" />
+        <a href="{{route('admin.emails.reply.create',$email->id)}}"
+            class="rounded-pill bg-primary text-white  text-decoration-none px-4 py-3 position-fixed"
+            style="right:30px;bottom:30px;font-size:18px">
+            <i class="bi bi-arrow-90deg-left"></i> Reply
+        </a>
     </div>
 </div>
 @endsection

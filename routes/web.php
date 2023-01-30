@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminEmailController;
+use App\Http\Controllers\AdminEmailReplyController;
 use App\Http\Controllers\AdminPostController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AuthController;
@@ -102,6 +103,9 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/emails/create', [AdminEmailController::class, 'create'])->name('admin.emails.create');
     Route::post('/emails/store', [AdminEmailController::class, 'store'])->name('admin.emails.store');
     Route::get('/emails/{email}', [AdminEmailController::class, "show"])->name("admin.emails.show");
+    //Email Reply Create
+    Route::get('/emails/{email}/reply/create', [AdminEmailReplyController::class, "create"])->name("admin.emails.reply.create");
+    Route::post('/emails/reply/store', [AdminEmailReplyController::class, 'store'])->name('admin.emails.reply.store');
 });
 
 //verify email

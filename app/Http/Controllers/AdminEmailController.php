@@ -66,6 +66,6 @@ class AdminEmailController extends Controller
 
     public function show(Email $email)
     {
-        return view("Admin.Email.show", ['email' => $email->load('user')]);
+        return view("Admin.Email.show", ['email' => $email]);
     }
 }
