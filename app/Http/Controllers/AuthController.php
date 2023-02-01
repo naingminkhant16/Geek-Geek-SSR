@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\EmailVerify;
+use App\Events\EmailVerify as EventsEmailVerify;
+
 use App\Models\Follower;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
+
 use Illuminate\Validation\Rules\Password;
-use Illuminate\Support\Str;
+
 
 class AuthController extends Controller
 {
@@ -70,9 +71,12 @@ class AuthController extends Controller
             'follower_id' => $user->id
         ]);
 
-        Cache::put('email_verify_token_' . $user->id, $user->username . Str::random(100), now()->addMinutes(10));
+        //alread put this code to event
+        // Cache::put('email_verify_token_' . $user->id, $user->username . Str::random(100), now()->addMinutes(10));
+        // Mail::to($user->email)->send(new EmailVerify($user, Cache::get('email_verify_token_' . $user->id)));
 
-        Mail::to($user->email)->send(new EmailVerify($user, Cache::get('email_verify_token_' . $user->id)));
+        //verify mail send event
+        EventsEmailVerify::dispatch($user);
 
         return redirect()->route('login')->with('success', 'Successfully registered.You can now login.');
     }

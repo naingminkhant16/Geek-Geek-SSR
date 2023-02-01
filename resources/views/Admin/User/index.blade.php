@@ -65,8 +65,11 @@
                                 <i class="bi bi-check-lg text-success fs-5"></i>
                                 @else
                                 <i class="bi bi-x-lg text-danger fs-5"></i>
-                                <a href="{{route('admin.emails.create')}}?recipient_mail={{$user->email}}"
-                                    class="text-decoration-none"><small>Send Mail</small></a>
+                                <form class=" d-inline-block" action="{{route('admin.emails.verify',$user->id)}}"
+                                    method="POST">
+                                    @csrf
+                                    <button class=" bg-transparent border-0 text-primary small">Send Mail</button>
+                                </form>
                                 @endif
                             </td>
                             <td class="">

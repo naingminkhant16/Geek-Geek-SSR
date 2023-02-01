@@ -106,6 +106,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     //Email Reply Create
     Route::get('/emails/{email}/reply/create', [AdminEmailReplyController::class, "create"])->name("admin.emails.reply.create");
     Route::post('/emails/reply/store', [AdminEmailReplyController::class, 'store'])->name('admin.emails.reply.store');
+    //Email Verify
+    Route::post("/emails/verify/{user}", [AdminEmailController::class, "sendEmailVerify"])->name("admin.emails.verify");
 });
 
 //verify email

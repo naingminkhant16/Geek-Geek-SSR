@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\EmailVerify;
 use App\Mail\CustomMail;
 use App\Models\Email;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -67,5 +69,11 @@ class AdminEmailController extends Controller
     public function show(Email $email)
     {
         return view("Admin.Email.show", ['email' => $email]);
+    }
+
+    public function sendEmailVerify(User $user)
+    {
+        EmailVerify::dispatch($user);
+        return back()->with("success", "Mail is successfully sent.");
     }
 }
