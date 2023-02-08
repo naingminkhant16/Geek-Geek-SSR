@@ -22,8 +22,13 @@
                         </div>
                     </form>
                     <div class="text-center">
-                        <small class="">No Account? <a href="{{route('register')}}" class="text-primary">Register</a>
-                            Now.</small>
+                        <small class="">No Account? <a href="{{route('register')}}"
+                                class="text-primary text-decoration-none">Register</a>
+                            Now.
+                            <a href="{{route('password.request')}}" class="text-primary text-decoration-none">
+                                Forgot Password?
+                            </a>
+                        </small>
                     </div>
                     <hr>
                     <x-oauth />

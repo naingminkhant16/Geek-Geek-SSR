@@ -8,6 +8,7 @@ use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\OAuthController;
+use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PostPhotoController;
 use App\Http\Controllers\UserController;
@@ -62,6 +63,27 @@ Route::middleware('guest')->controller(AuthController::class)->group(function ()
     //register
     Route::get('/register', 'register')->name('register');
     Route::post('/register', 'attemptRegister')->name('attemptRegister');
+
+    //verify email
+    Route::get("/email-verify/{user}/{token}", [AuthController::class, 'verifyEmail'])->name('emailVerify');
+
+    //mails templates
+    Route::get('/mails/{name}', function ($name) {
+        return view("Mails." . $name);
+    });
+
+    //password reset
+    //forgot password form view
+    Route::get('/forgot-password', [PasswordController::class, 'request'])->name('password.request');
+
+    //handle forgot password form request
+    Route::post('/forgot-password', [PasswordController::class, 'email'])->name('password.email');
+
+    //reset password form view
+    Route::get('/reset-password/{token}', [PasswordController::class, "reset"])->name('password.reset');
+
+    //handle reset password form
+    Route::post('/reset-password', [PasswordController::class, "update"])->name('password.update');
 });
 
 //Admin Routes
@@ -108,12 +130,4 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::post('/emails/reply/store', [AdminEmailReplyController::class, 'store'])->name('admin.emails.reply.store');
     //Email Verify
     Route::post("/emails/verify/{user}", [AdminEmailController::class, "sendEmailVerify"])->name("admin.emails.verify");
-});
-
-//verify email
-Route::get("/email-verify/{user}/{token}", [AuthController::class, 'verifyEmail'])->name('emailVerify');
-
-//mails templates
-Route::get('/mails/{name}', function ($name) {
-    return view("Mails." . $name);
 });

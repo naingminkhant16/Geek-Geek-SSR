@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\EmailVerify as EventsEmailVerify;
 use App\Mail\EmailVerify;
 use App\Models\Comment;
 use App\Models\Follower;
@@ -77,8 +78,7 @@ class AdminUserController extends Controller
             $user->email_verified_at = now();
             $user->update();
         } else {
-            Cache::put('email_verify_token_' . $user->id, $user->username . Str::random(100), now()->addMinutes(10));
-            Mail::to($user->email)->send(new EmailVerify($user, Cache::get('email_verify_token_' . $user->id)));
+            event(new EventsEmailVerify($user));
         }
 
         return redirect()->route('admin.users.index')->with('success', "$user->name is successfully created.");
