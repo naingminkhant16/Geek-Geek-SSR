@@ -10,7 +10,12 @@
                         Forgot Password
                     </h3>
                     <hr>
-                    <form action="{{route('password.email')}}" method="POST" class="mt-4">
+                    @if (Session::has('success'))
+                    <p class="text-success">Reset Password link is sent to your mail.</p>
+                    @elseif (Session::has('error'))
+                    <p class="">Opps, failed to send mail! Try Again.</p>
+                    @endif
+                    <form action="{{route('password.email')}}" method="POST" class="">
                         @csrf
                         <x-input label="Enter Email Address" name="email" :value="old('email')" />
 

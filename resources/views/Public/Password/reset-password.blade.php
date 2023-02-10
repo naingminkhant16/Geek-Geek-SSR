@@ -12,9 +12,9 @@
                     <hr>
                     <form action="{{route('password.update')}}" method="POST" class="mt-4">
                         @csrf
-                        <x-input label="Enter Email Address" name="email" :value="old('email')" />
-                        <x-input label="Enter New Password" name="password" :value="old('password')" />
-                        <x-input label="Enter Confirm Password" name="password_confirmation"
+                        <x-input label="Enter Email Address" name="email" :value="old('email')??request('email')" />
+                        <x-input label="Enter New Password" name="password" :value="old('password')" type="password" />
+                        <x-input label="Enter Confirm Password" name="password_confirmation" type="password"
                             :value="old('password_confirmation')" />
                         <input type="hidden" value="{{$token}}" name="token">
 
