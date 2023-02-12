@@ -8,8 +8,10 @@ use App\Models\Like;
 use App\Models\Post;
 use App\Models\PostPhoto;
 use App\Models\User;
+use App\Notifications\PostCreated;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -85,6 +87,9 @@ class PostController extends Controller
             //multiple insertaion
             PostPhoto::insert($photos);
         }
+
+        //to notify your followers
+        Notification::send(Auth::user()->followers, new PostCreated($post));
 
         return redirect()->route('home')->with('success', 'Your Post is successfully created.');
     }

@@ -1,6 +1,6 @@
 <x-mail-layout>
     <div style="">
-        <p style="">
+        <p style="text-align:justify">
             {{$body}}
         </p>
     </div>

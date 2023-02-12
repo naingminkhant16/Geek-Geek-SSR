@@ -12,7 +12,7 @@ use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PostPhotoController;
 use App\Http\Controllers\UserController;
-
+use App\Notifications\PostCreated;
 use Illuminate\Support\Facades\Route;
 
 
@@ -84,6 +84,12 @@ Route::middleware('guest')->controller(AuthController::class)->group(function ()
 
     //handle reset password form
     Route::post('/reset-password', [PasswordController::class, "update"])->name('password.update');
+
+    Route::get('/notification', function () {
+
+        return (new PostCreated)
+            ->toMail('test@gmail.com');
+    });
 });
 
 //Admin Routes

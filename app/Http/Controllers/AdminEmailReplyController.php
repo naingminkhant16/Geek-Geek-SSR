@@ -41,7 +41,7 @@ class AdminEmailReplyController extends Controller
             "attach_files" => $toStoreFiles ?? null
         ]);
 
-        Mail::to($email->recipient)->send(new CustomMail(
+        Mail::to($email->recipient)->queue(new CustomMail(
             $email->subject,
             $reply->body,
             $reply->attach_files
