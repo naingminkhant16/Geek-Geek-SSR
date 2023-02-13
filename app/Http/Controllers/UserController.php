@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Follower;
 use App\Models\Post;
 use App\Models\User;
+use App\Notifications\GetFollowed;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -17,8 +18,8 @@ class UserController extends Controller
         request()->validate([
             'user_id' => "exists:users,id"
         ]);
-
         $user_id = request('user_id');
+
         //check duplicate data
         if (Follower::where('user_id', $user_id)->where('follower_id', Auth::id())->exists()) {
             return back();
@@ -29,7 +30,10 @@ class UserController extends Controller
             'follower_id' => Auth::id()
         ]);
 
-        return back()->with('info', "Now u can see " . User::find($user_id)->name . "\' posts.");
+        //Notify user who get followed
+        User::findOrFail($user_id)->notify(new GetFollowed(Auth::user()));
+
+        return back()->with('success', "Now u can see " . User::find($user_id)->name . "\' posts.");
     }
 
     public function unfollow()

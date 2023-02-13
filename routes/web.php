@@ -85,11 +85,10 @@ Route::middleware('guest')->controller(AuthController::class)->group(function ()
     //handle reset password form
     Route::post('/reset-password', [PasswordController::class, "update"])->name('password.update');
 
-    Route::get('/notification', function () {
-
-        return (new PostCreated)
-            ->toMail('test@gmail.com');
-    });
+    // Route::get('/notification', function () {
+    //     return (new PostCreated)
+    //         ->toMail('test@gmail.com');
+    // });
 });
 
 //Admin Routes
