@@ -8,6 +8,7 @@ use App\Models\Like;
 use App\Models\Post;
 use App\Models\PostPhoto;
 use App\Models\User;
+use App\Notifications\GetLike;
 use App\Notifications\PostCreated;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -202,10 +203,15 @@ class PostController extends Controller
         if ($like) {
             $like->delete();
         } else {
-            Like::create([
+            $like = Like::create([
                 'user_id' => Auth::id(),
                 'post_id' => $post->id
             ]);
+
+            //Notify post owner
+            if ($post->user->id !== $like->user_id) {
+                $post->user->notify(new GetLike($like));
+            }
         }
         return back();
     }
