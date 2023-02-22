@@ -49,3 +49,6 @@ window.showToast = (msg, icon = 'success') => {
 
 //charts js admin dashboard
 import "./admin/charts";
+
+//invoke post-like handler function
+import "./likePost";

@@ -68,8 +68,8 @@
         @endif
         <div class="d-flex ms-1 mb-3">
             <div class="me-3">
-                <form action="{{route('posts.like',$post->id)}}" method="POST" class="inline-block">
-                    @csrf
+                @csrf
+                {{-- <form action="{{route('posts.like',$post->id)}}" method="POST" class="inline-block">
                     <div class="">
                         <button class="bg-white border-0 me-0">
                             @if ($post->likes->contains('user_id',Auth::id()))
@@ -80,7 +80,16 @@
                         </button>
                         <span class="text-black-50">{{$post->likes->count()}} likes</span>
                     </div>
-                </form>
+                </form> --}}
+                <button class="bg-white border-0 me-0"
+                    onclick="makeRequestForPostLike(document.getElementsByName('_token')[0].value,{{$post->id}})">
+                    @if ($post->likes->contains('user_id',Auth::id()))
+                    <i class="bi bi-heart-fill fs-5 heart-sign-{{$post->id}}"></i>
+                    @else
+                    <i class="bi bi-heart fs-5 heart-sign-{{$post->id}}"></i>
+                    @endif
+                </button>
+                <span class="text-black-50" id="likes-count-{{$post->id}}">{{$post->likes->count()}}</span>likes
             </div>
             <div class="me-3">
                 <i class="bi bi-chat fs-5 me-1"></i>
@@ -119,3 +128,10 @@
         <x-comment-form :post="$post" />
     </div>
 </div>
+{{-- @push('scripts')
+<script type="module">
+    // const token= document.getElementsByName('_token')[0].value
+
+    // makeRequestForPostLike(token,100)
+</script>
+@endpush --}}

@@ -202,17 +202,20 @@ class PostController extends Controller
 
         if ($like) {
             $like->delete();
+            $msg = "unlike";
         } else {
             $like = Like::create([
                 'user_id' => Auth::id(),
                 'post_id' => $post->id
             ]);
+            $msg = "like";
 
             //Notify post owner
             if ($post->user->id !== $like->user_id) {
                 $post->user->notify(new GetLike($like));
             }
         }
-        return back();
+        //response for fetch call from lilke post
+        return response()->json(['msg' => $msg], 200);
     }
 }
