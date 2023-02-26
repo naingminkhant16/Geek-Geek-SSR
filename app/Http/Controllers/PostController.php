@@ -7,9 +7,11 @@ use App\Http\Requests\UpdatePostRequest;
 use App\Models\Like;
 use App\Models\Post;
 use App\Models\PostPhoto;
+use App\Models\ReportedPost;
 use App\Models\User;
 use App\Notifications\GetLike;
 use App\Notifications\PostCreated;
+use App\Notifications\PostReported;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Notification;
@@ -217,5 +219,28 @@ class PostController extends Controller
         }
         //response for fetch call from lilke post
         return response()->json(['msg' => $msg], 200);
+    }
+
+    //report post
+    public function report()
+    {
+        request()->validate([
+            'post_id' => "required|exists:posts,id",
+            'message' => "required|max:800|min:3"
+        ]);
+
+        $reportedPost =  ReportedPost::create([
+            "post_id" => request('post_id'),
+            "reporter_id" => auth()->id(),
+            "message" => request('message')
+        ]);
+
+        //notify admin
+        Notification::send(
+            User::where('is_admin', "1")->get(),
+            new PostReported($reportedPost)
+        );
+
+        return back()->with('success', 'Successfully Reported');
     }
 }

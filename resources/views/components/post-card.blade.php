@@ -19,11 +19,13 @@
                     </a>
                 </li>
                 @endcan
+                @if (auth()->id()!==$post->user_id)
                 <li>
-                    <a class="dropdown-item" href="#">
+                    <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#reportForm{{$post->id}}">
                         <i class="bi bi-exclamation-circle me-1"></i>Report To Admin
-                    </a>
+                    </button>
                 </li>
+                @endif
                 @can('delete',$post)
                 <li>
                     <form action="{{route('posts.destroy',$post->id)}}" method="POST" id="postDeleteForm{{$post->id}}">
@@ -39,11 +41,35 @@
             </ul>
         </div>
     </div>
-
+    {{-- modal form for report post --}}
+    <x-modal id="reportForm{{$post->id}}">
+        @slot('title')
+        Write a message for admin to review!
+        @endslot
+        <div class="">
+            <form action="{{route('posts.report')}}" method="POST">
+                @csrf
+                <input type="hidden" name="post_id" value="{{$post->id}}">
+                <div class="mb-3">
+                    <div class="form-floating">
+                        <textarea class="form-control" placeholder="Leave a message here" id="message" name="message"
+                            style="height: 250px"></textarea>
+                        <label for="message">Report Message</label>
+                    </div>
+                </div>
+                <div class="text-end">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </x-modal>
+    {{-- modal form for post delete --}}
     @can('delete',$post)
     <x-modal id="postDeleteConfirmModal{{$post->id}}">
         <div class="text-center">
-            <h5>Are u sure u want to delete?</h5>
+            @slot('title')
+            Are u sure u want to delete?
+            @endslot
             <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">No</button>
             <button form="postDeleteForm{{$post->id}}" type="submit" class="btn btn-danger ">Yes</button>
         </div>
@@ -89,7 +115,8 @@
                     <i class="bi bi-heart fs-5 heart-sign-{{$post->id}}"></i>
                     @endif
                 </button>
-                <span class="text-black-50" id="likes-count-{{$post->id}}">{{$post->likes->count()}}</span>likes
+                <span class="text-black-50" id="likes-count-{{$post->id}}">{{$post->likes->count()}}</span><span
+                    class="text-black-50"> likes</span>
             </div>
             <div class="me-3">
                 <i class="bi bi-chat fs-5 me-1"></i>

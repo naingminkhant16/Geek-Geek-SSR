@@ -34,6 +34,9 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/posts', PostController::class);
     Route::post('/posts/like/{post}', [PostController::class, 'handleLikePost'])->name('posts.like');
 
+    //report post
+    Route::post('/posts/report', [PostController::class, 'report'])->name('posts.report');
+
     //photos
     Route::delete('/post-photos/{photo}', [PostPhotoController::class, 'delete'])->name('post-photos.delete');
 

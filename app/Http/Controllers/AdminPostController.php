@@ -22,7 +22,7 @@ class AdminPostController extends Controller
                 $query->where('deleted_at', NULL);
             })
             ->latest()
-            ->with(['user', 'photos'])
+            ->with(['user', 'photos', 'reportedPosts'])
             ->paginate(6);
 
         return view('Admin.Post.index', [
@@ -41,7 +41,7 @@ class AdminPostController extends Controller
                     });
             });
         })->with([
-            'user', 'photos'
+            'user', 'photos', 'reportedPosts'
         ])
             ->orWhereHas('user', function ($query) {
                 //if user is deleted temporarily deleted, his posts will not be shown

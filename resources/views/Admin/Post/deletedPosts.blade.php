@@ -26,7 +26,13 @@
             <div class="mt-3 shadow p-3 rounded-3 bg-white">
                 @foreach ($deletedPosts as $post)
                 <div class="row mb-3 align-items-center border-bottom p-3">
-                    <div class="col-12 col-lg-4 mb-3">
+                    <div class="col-12 col-lg-4 mb-3 position-relative">
+                        @if ($post->reportedPosts->count())
+                        <span class="badge bg-danger float-start position-absolute z-3"
+                            style="transform:rotate(-45deg);left:0%;top:8%">
+                            {{$post->reportedPosts->count()}} Reported
+                        </span>
+                        @endif
                         @if ($post->photos->count())
                         <div id="photo{{$post->id}}" class="carousel slide" style="max-width: 320px;"
                             data-bs-ride="carousel">
@@ -77,6 +83,27 @@
                                     <i class="bi bi-arrow-clockwise  text-white"></i>
                                 </button>
 
+
+                                {{-- to see reported msg with modal box --}}
+                                @if ($post->reportedPosts->count())
+                                <button type="button" data-bs-toggle="modal" data-bs-target="#reportInfo{{$post->id}}"
+                                    class="btn btn-danger btn-sm text-white"><i
+                                        class="bi bi-exclamation-triangle-fill"></i></button>
+                                <x-modal id="reportInfo{{$post->id}}">
+                                    @slot('title')
+                                    <span class="text-danger">Report Info</span>
+                                    @endslot
+                                    @foreach ($post->reportedPosts as $reportedPost)
+                                    <div class="border p-3 rounded-3 mb-3">
+                                        <small class="text-black-50">Reporter :</small>
+                                        <p class="mb-0">{{$reportedPost->reporter->name}}</p>
+
+                                        <small class="text-black-50">Reported Message :</small>
+                                        <p class="mb-0" style="text-align: justify">{{$reportedPost->message}}</p>
+                                    </div>
+                                    @endforeach
+                                </x-modal>
+                                @endif
                                 <form action="{{route('admin.posts.destroy',$post->id)}}" class="d-none" method="POST"
                                     id="deletePost{{$post->id}}">
                                     @csrf

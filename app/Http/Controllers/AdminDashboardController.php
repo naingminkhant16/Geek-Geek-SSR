@@ -27,11 +27,11 @@ class AdminDashboardController extends Controller
         return  view('Admin.Dashboard.index', ['data' => $data]);
     }
 
-    public function getDataCountByDate(Object $obj, $label)
+    public function getDataCountByDate(Object $obj, String $label): array
     {
         return [
             $label => $obj->latest()
-                ->limit(12)
+                ->limit(12) // last 12 months
                 ->get()
                 ->map(
                     fn ($item) =>  [
