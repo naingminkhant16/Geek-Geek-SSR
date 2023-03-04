@@ -22,10 +22,9 @@
                         </div>
                     </form>
                     <div class="text-center">
-                        <small class="">No Account? <a href="{{route('register')}}"
-                                class="text-primary text-decoration-none">Register</a>
+                        <small class="">No Account? <a href="{{route('register')}}" class="text-primary ">Register</a>
                             Now.
-                            <a href="{{route('password.request')}}" class="text-primary text-decoration-none">
+                            <a href="{{route('password.request')}}" class="text-primary ">
                                 Forgot Password?
                             </a>
                         </small>

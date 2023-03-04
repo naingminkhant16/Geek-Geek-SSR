@@ -1,15 +1,16 @@
 @props(['user'=>Auth::user()])
 <div class="border rounded-3 p-3 bg-white shadow">
-    <div class="d-flex justify-content-end mb-3">
+    <div class="d-flex justify-content-end">
         @can('update-user',$user)
         <a href="{{route('users.edit',$user->username)}}"><i class="bi bi-pencil-fill"></i></a>
         @endcan
     </div>
     <div class="d-flex justify-content-center flex-column">
         <div class="text-center">
+            <hr>
             <div class="mb-3">
                 <a href="{{asset('storage/'.$user->profile)}}" class="venobox">
-                    <x-avatar :path="$user->profile" width="180" />
+                    <x-avatar :path="$user->profile" width="150" />
                 </a>
             </div>
             <h4 class="mb-0">

@@ -25,7 +25,7 @@
                     </form>
                     <div class="text-center">
                         <small class="">Enter Your Mail Address Or <a href="{{route('login')}}"
-                                class=" text-decoration-none text-primary">Login</a></small>
+                                class=" text-primary">Login</a></small>
                     </div>
                     <hr>
                 </div>
