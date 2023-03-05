@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminPostController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\OAuthController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\PostController;
@@ -59,13 +60,13 @@ Route::middleware(['auth'])->group(function () {
 });
 
 //Public Routes
-Route::middleware('guest')->controller(AuthController::class)->group(function () {
+Route::middleware('guest')->group(function () {
     // Login
-    Route::get('/login', 'login')->name('login');
-    Route::post('/login', 'attemptLogin')->name('attemptLogin');
+    Route::get('/login', [AuthController::class, 'login'])->name('login');
+    Route::post('/login',  [AuthController::class, 'attemptLogin'])->name('attemptLogin');
     //register
-    Route::get('/register', 'register')->name('register');
-    Route::post('/register', 'attemptRegister')->name('attemptRegister');
+    Route::get('/register',  [AuthController::class, 'register'])->name('register');
+    Route::post('/register',  [AuthController::class, 'attemptRegister'])->name('attemptRegister');
 
     //verify email
     Route::get("/email-verify/{user}/{token}", [AuthController::class, 'verifyEmail'])->name('emailVerify');
@@ -139,3 +140,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     //Email Verify
     Route::post("/emails/verify/{user}", [AdminEmailController::class, "sendEmailVerify"])->name("admin.emails.verify");
 });
+
+//contact us
+Route::get('/contact-us', [ContactController::class, 'index'])->name('contact-us');
+Route::post('/contact-us', [ContactController::class, 'store'])->name('contact-us.store');

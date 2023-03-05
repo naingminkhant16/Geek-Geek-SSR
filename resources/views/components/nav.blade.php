@@ -30,13 +30,14 @@
                     </li>
                 </ul>
             </div>
-            @endauth
             <div class="">
-                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas"
                     data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" aria-expanded="false">
-                    <span class="navbar-toggler-icon"></span>
+                    {{-- <span class="navbar-toggler-icon"></span> --}}
+                    <i class="bi bi-three-dots"></i>
                 </button>
             </div>
+            @endauth
         </div>
 
     </div>
