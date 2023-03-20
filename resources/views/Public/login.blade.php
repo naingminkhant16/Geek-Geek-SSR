@@ -2,8 +2,8 @@
     <x-slot:title>
         Login
     </x-slot:title>
-    <div class="row justify-content-center align-items-center">
-        <div class="col-12 col-lg-5">
+    <div class="row justify-content-center align-items-center mt-5">
+        <div class="col-12 col-lg-5 mt-0 mt-lg-5">
             <div class="bg-white shadow d-flex align-items-center justify-content-center rounded-3 p-4 p-lg-5 ">
                 <div class="" style="">
                     <h3 class="text-center mb-4">Be Ready To <span

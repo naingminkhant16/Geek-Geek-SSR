@@ -39,7 +39,7 @@
                         @csrf
                         <x-input label="Your Name" name="name" :value="old('name')" />
 
-                        <x-input label="Your Email" name="email" type='email' />
+                        <x-input label="Your Email" name="email" type='email' :value="old('email')" />
                         <div class="mb-3">
                             <textarea name="message" id="" class="form-control @error('message')
                                 is-invalid  @enderror" cols="30" rows="10"

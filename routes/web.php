@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminContactController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminEmailController;
 use App\Http\Controllers\AdminEmailReplyController;
@@ -13,7 +14,6 @@ use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PostPhotoController;
 use App\Http\Controllers\UserController;
-use App\Notifications\PostCreated;
 use Illuminate\Support\Facades\Route;
 
 
@@ -139,6 +139,10 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::post('/emails/reply/store', [AdminEmailReplyController::class, 'store'])->name('admin.emails.reply.store');
     //Email Verify
     Route::post("/emails/verify/{user}", [AdminEmailController::class, "sendEmailVerify"])->name("admin.emails.verify");
+
+    //Contact Messages
+    Route::get('/contact-messages', [AdminContactController::class, "index"])->name("admin.contact-messages.index");
+    Route::patch('/contact-messages/{contact:id}/mark-as-read', [AdminContactController::class, 'markAsRead'])->name('admin.contact-messages.markAsRead');
 });
 
 //contact us
