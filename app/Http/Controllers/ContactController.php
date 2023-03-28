@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
+use App\Models\User;
+use App\Notifications\NotifyAdminContactMessage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 
 class ContactController extends Controller
 {
@@ -20,13 +23,17 @@ class ContactController extends Controller
             "message" => "required|min:3|max:1000"
         ]);
 
-        Contact::create([
+        $contact = Contact::create([
             'name' => request('name'),
             'email' => request('email'),
             'message' => request('message')
         ]);
 
         //to notify admin
+        Notification::send(
+            User::where('is_admin', "1")->get(),
+            new NotifyAdminContactMessage($contact->name, $contact->email, $contact->message)
+        );
 
         return back()->with('success', "Message is successfullly sent.");
     }
