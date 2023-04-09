@@ -32,12 +32,14 @@
                                     id="markAsReadForm-{{$contact->id}}" method="POST">
                                     @csrf
                                     @method("PATCH")
-                                    <button type="submit" class="btn btn-white text-success btn-sm"
+                                    <button type="submit" class="btn btn-white text-success btn-sm "
                                         form="markAsReadForm-{{$contact->id}}">
                                         Mark as read <i class="bi bi-check-lg"></i>
                                     </button>
                                 </form>
                                 @endif
+                                <small
+                                    class="text-black-50 d-block text-end">{{$contact->created_at->diffForHumans()}}</small>
                             </div>
                         </div>
                     </div>
@@ -46,9 +48,17 @@
                             style="text-align: justify">
                             {{$contact->message}}
                         </p>
+                        @if ($contact->is_read)
                         <div class="float-end">
-                            <small class="text-black-50">{{$contact->created_at->diffForHumans()}}</small>
+                            <form action="{{route('admin.contact-message.delete',$contact->id)}}" method="POST"
+                                class=" d-inline-block">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm text-white">
+                                    <i class="bi bi-trash-fill"></i></button>
+                            </form>
                         </div>
+                        @endif
                     </div>
                 </div>
             </div>

@@ -142,7 +142,9 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
     //Contact Messages
     Route::get('/contact-messages', [AdminContactController::class, "index"])->name("admin.contact-messages.index");
-    Route::patch('/contact-messages/{contact:id}/mark-as-read', [AdminContactController::class, 'markAsRead'])->name('admin.contact-messages.markAsRead');
+    Route::patch('/contact-messages/{contact}/mark-as-read', [AdminContactController::class, 'markAsRead'])
+        ->name('admin.contact-messages.markAsRead');
+    Route::delete('/contact-messages/{contact}', [AdminContactController::class, 'delete'])->name('admin.contact-message.delete');
 });
 
 //contact us

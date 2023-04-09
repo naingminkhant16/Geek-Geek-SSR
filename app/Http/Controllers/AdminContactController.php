@@ -24,6 +24,12 @@ class AdminContactController extends Controller
     {
         $contact->is_read = "1";
         $contact->update();
-        return back()->with("success", "Successfully makr as read");
+        return back()->with("success", "Successfully marked as read");
+    }
+
+    public function delete(Contact $contact)
+    {
+        $contact->delete();
+        return back()->with("success", "Successfully deleted contact message");
     }
 }
