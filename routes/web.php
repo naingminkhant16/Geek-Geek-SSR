@@ -150,3 +150,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 //contact us
 Route::get('/contact-us', [ContactController::class, 'index'])->name('contact-us');
 Route::post('/contact-us', [ContactController::class, 'store'])->name('contact-us.store');
+
+//About Me
+Route::get('/about-me', function () {
+    return view('Public.about');
+})->name('about-me');

@@ -8,9 +8,11 @@
                     <x-people-you-may-know-card :people="$users" title="Users related with '{{request('search')}}'" />
                 </div>
                 <div class="">
-                    <div class="bg-white text-black p-3 rounded-3 shadow mb-3">
-                        <h5 class="mb-0">Posts related with '{{request('search')}}'</h5>
-                        <hr class="">
+                    <div class="mb-3">
+                        <div class="mb-3 bg-white p-2 rounded-3">
+                            <h5 class="mb-0">Posts related with '{{request('search')}}'</h5>
+                            <hr class="">
+                        </div>
                         @forelse ($posts as $post)
                         <x-post-card :post="$post"></x-post-card>
 
