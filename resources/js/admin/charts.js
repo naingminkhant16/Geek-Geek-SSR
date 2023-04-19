@@ -15,7 +15,7 @@ window.showChart = function (chart, id, label) {
     let backgroundColor;
     switch (label) {
         case "Users":
-            backgroundColor = "rgba(0, 187, 240,0.75)";
+            backgroundColor = "#BB68FC";
             break;
         case "Posts":
             backgroundColor = "rgba(69, 235, 165,0.75)";

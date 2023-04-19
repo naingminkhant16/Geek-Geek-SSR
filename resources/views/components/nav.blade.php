@@ -1,10 +1,16 @@
-<nav class="navbar navbar-expand-lg bg-white navbar-white border-bottom border-opacity-10 border-light sticky-top">
+<nav class="navbar navbar-expand-lg  bg-body-tertiary border-bottom border-opacity-10 sticky-top">
     <div class="container">
         <a class="navbar-brand" href="/">
-            <span class="text-white border p-2  rounded-3 bg-primary border-0 m-1">Geek</span></a>
+            <span class="text-white bg-primary p-2 rounded-3 m-1">Geek</span></a>
 
         <div class="d-flex justify-content-center align-items-center">
+            <div class="me-lg-3">
+                <i class="bi bi-circle-half fs-5" id="dark-light-circle"></i>
+            </div>
             @auth
+            <div class="d-none d-lg-block me-3">
+                <x-search-form />
+            </div>
             <div class="dropdown d-none d-lg-block">
                 <div class="" data-bs-toggle="dropdown">
                     <x-avatar :path="Auth::user()->profile" />
@@ -25,7 +31,7 @@
                     </li>
                     @endif
                     <li class="">
-                        <button type="submit" class="dropdown-item text-danger" form="logout">
+                        <button type="submit" class="dropdown-item text-danger-emphasis" form="logout">
                             <i class="bi bi-box-arrow-right me-1"></i>Logout</button>
                     </li>
                 </ul>
@@ -51,53 +57,51 @@
 {{-- //offcanvas --}}
 <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
     <div class="offcanvas-header">
-        <a class="offcanvas-title mt-2" href="/">
-            <span class="text-white border p-2  rounded-3 bg-primary border-0 m-1">Geek</span></a>
+        {{-- <a class="offcanvas-title mt-2 text-decoration-none" href="/">
+            <span class="text-white-emphasis m-1">Geek</span></a> --}}
+        <div></div>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body d-flex justify-content-center align-items-center">
         <div class="mt-3">
             <div class="text-center">
                 <div class="mb-3">
-                    <a href="{{route('users.show',auth()->user()->username)}}" class="">
+                    <a href="{{route('users.show',auth()->user()->username)}}"
+                        class="@if(request()->routeIs('users.show',auth()->user()->username))text-primary @else  text-secondary-emphasis  @endif text-decoration-none">
                         <i class="bi bi-person-fill"></i> Profile</a>
                 </div>
                 <div class="mb-3">
-                    <a href="{{route('users.peopleYouMayKnow')}}" class="">
+                    <a href="{{route('users.peopleYouMayKnow')}}"
+                        class="@if (request()->routeIs('users.peopleYouMayKnow')) text-primary @else text-secondary-emphasis @endif text-decoration-none">
                         <i class="bi bi-person-plus-fill"></i> People You May Konw</a>
                 </div>
                 @if (auth()->user()->is_admin)
                 <div class="mb-3">
-                    <a href="{{route('dashboard.index')}}" class="">
+                    <a href="{{route('dashboard.index')}}" class="text-secondary-emphasis text-decoration-none">
                         <i class="bi bi-bar-chart"></i>
                         Dashboard
                     </a>
                 </div>
                 @endif
                 <div class="mb-3">
-                    <a href="{{route('users.peopleYouMayKnow')}}" class="">
+                    <a href="{{route('users.followers',auth()->user()->username)}}"
+                        class="@if(request()->routeIs('users.followers',auth()->user()->username))text-primary @else  text-secondary-emphasis  @endif text-decoration-none">
                         <i class="bi bi-people-fill"></i> Followers</a>
                 </div>
                 <div class="mb-3">
 
-                    <a href="{{route('users.peopleYouMayKnow')}}" class="">
+                    <a href="{{route('users.followings',auth()->user()->username)}}"
+                        class="@if (request()->routeIs('users.followings',auth()->user()->username)) text-primary @else text-secondary-emphasis @endif text-decoration-none">
                         <i class="bi bi-person-check-fill me-1"></i>Followings</a>
                 </div>
                 <div class="mb-3 d-flex justify-content-center">
-                    <button type="submit" class="text-danger nav-link border-0 bg-transparent" form="logout">
+                    <button type="submit" class="text-danger-emphasis nav-link border-0 bg-transparent" form="logout">
                         <i class="bi bi-box-arrow-right me-1"></i>Logout</button>
                 </div>
             </div>
-
-            <form action="{{route('users.search')}}" class="mb-3">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search" name="search"
-                        value="{{request('search')}}">
-                    <button class="btn btn-primary text-white" type="submit">
-                        <i class="bi bi-search"></i>
-                    </button>
-                </div>
-            </form>
+            <div class="mb-3">
+                <x-search-form />
+            </div>
 
         </div>
 

@@ -4,7 +4,7 @@
     <div class="">
         <div class="row justify-content-center">
             <div class="col-12 col-lg-6">
-                <div class=" bg-white rounded-3 p-3 shadow">
+                <div class="border bg-body-tertiary rounded-3 p-3 ">
                     <div class="text-center">
                         <img src="{{asset('storage/'.$user->profile)}}" alt="" id="preview" width="400"
                             class="img-fluid rounded-3">

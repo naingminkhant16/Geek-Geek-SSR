@@ -2,9 +2,9 @@
     <x-slot:title>
         Contact Us
     </x-slot:title>
-    <div class="bg-white shadow rounded-3 p-4 p-lg-5 mt-0 mt-lg-5 mb-3">
-        <h2 class="text-center">About the Creator</h2>
-        <p class="text-center text-black-50">Brief story about the creator.</p>
+    <div class="border bg-body-tertiary rounded-3 p-4 p-lg-5 mt-0 mt-lg-5 mb-3">
+        <h2 class="text-center text-dark-emphasis">About the Creator</h2>
+        <p class="text-center text-body-secondary">Brief story about the creator.</p>
 
         <div class="row border p-0 p-lg-3 rounded-3 mt-lg-5">
             <div class="col-lg-5 mt-3">
@@ -14,8 +14,9 @@
             </div>
             <div class="col-lg-7">
                 <div class="" style="">
-                    <h3 class="mt-3 mb-4">Hello, I'm Naing Min Khant. </h3>
-                    <div class="text-black-50" style="text-align: justify">
+                    <h3 class="mt-3 mb-4 text-dark-emphasis">Hello, I'm <span class="text-primary">Naing Min
+                            Khant</span>. </h3>
+                    <div class="text-body" style="text-align: justify">
                         You can call me Thar Khant (my nickname). I'm 21 years old typical Burmese Boy who is
                         passionate
                         about coding and studying BSc in Software Engineering at CMU. I'm interested in Backend
@@ -24,29 +25,29 @@
                     </div>
                     <div class="mt-4">
                         <p><span class="fw-bold">Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </span><span
-                                class="text-black-50">Naing
+                                class="text-body-secondary">Naing
                                 Min
                                 Khant</span> </p>
 
                         <p><span class="fw-bold">Age &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
                             </span>
-                            <span class="text-black-50">21</span>
+                            <span class="text-body-secondary">21</span>
                         </p>
 
                         <p><span class="fw-bold">Email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </span><a
-                                href="mailto: tharkhant777@gmail.com"
-                                class="text-black-50 email">tharkhant777@gmail.com</a></p>
+                                href="mailto:tharkhant777@gmail.com"
+                                class="text-primary email">tharkhant777@gmail.com</a></p>
 
                         <p><span class="fw-bold">Phone &nbsp;&nbsp;&nbsp;&nbsp;: </span> <span
-                                class="text-black-50">09-952128314</span> </p>
+                                class="text-body-secondary">09-952128314</span> </p>
 
                         <p><span class="fw-bold">From&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </span><span
-                                class="text-black-50"> South
+                                class="text-body-secondary"> South
                                 Okkalapa
                                 Township, Yangon, Myanmar</span></p>
                     </div>
                     <div class="mb-3 mb-lg-0 mt-4">
-                        <a href="https://nmk.netlify.app/#/" target="blank" class="btn  btn-primary">Visit
+                        <a href="https://nmk.netlify.app/#/" target="blank" class="btn  btn-primary text-white">Visit
                             Me</a>
                     </div>
                 </div>

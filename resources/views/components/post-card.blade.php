@@ -1,16 +1,17 @@
 @props(['post','show'=>false])
-<div class="bg-white shadow rounded-3 mb-3 p-3">
+<div class="bg-body-tertiary border rounded-3 mb-3 p-3">
     <div class="d-flex justify-content-between align-items-center mb-3">
         <div class="d-flex align-items-center">
             <x-avatar :path="$post->user->profile" />
             <div class="d-flex flex-column justify-content-center mt-2">
                 <h6 class="mb-1"><a href="{{route('users.show',$post->user->username)}}"
-                        class="text-decoration-none text-black">{{$post->user->name}}</a></h6>
-                <small class="text-black-50">{{$post->created_at->diffForHumans()}}</small>
+                        class="text-decoration-none text-dark-emphasis">{{$post->user->name}}</a></h6>
+                <small class="text-secondary-emphasis">{{$post->created_at->diffForHumans()}}</small>
             </div>
         </div>
         <div class="">
-            <i class="bi bi-three-dots text-black-50 fs-5" data-bs-toggle="dropdown" style="cursor:pointer"></i>
+            <i class="bi bi-three-dots text-secondary-emphasis fs-5" data-bs-toggle="dropdown"
+                style="cursor:pointer"></i>
             <ul class="dropdown-menu">
                 @can('update',$post)
                 <li>
@@ -32,7 +33,7 @@
                         @csrf
                         @method('delete')
                     </form>
-                    <button class="dropdown-item text-danger" data-bs-toggle="modal"
+                    <button class="dropdown-item text-danger-emphasis" data-bs-toggle="modal"
                         data-bs-target="#postDeleteConfirmModal{{$post->id}}">
                         <i class="bi bi-trash"></i> Delete Post
                     </button>
@@ -70,17 +71,18 @@
             @slot('title')
             Are u sure u want to delete?
             @endslot
-            <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">No</button>
+            <button type="button" class="btn btn-dark" data-bs-dismiss="modal">No</button>
             <button form="postDeleteForm{{$post->id}}" type="submit" class="btn btn-danger ">Yes</button>
         </div>
     </x-modal>
     @endcan
 
     <div class="">
-        <p class="mb-3" style="text-align: justify">
+        <p class="mb-3 text-body" style="text-align: justify">
             @if (!$show)
             {{Str::words($post->status, 50,'')}}
-            <a href="{{route('posts.show',$post->id)}}" class="text-black-50 text-decoration-none"> See More...</a>
+            <a href="{{route('posts.show',$post->id)}}" class="text-body-secondary text-decoration-none"> See
+                More...</a>
             @else
             {{$post->status}}
             @endif
@@ -95,32 +97,21 @@
         <div class="d-flex ms-1 mb-3">
             <div class="me-3">
                 @csrf
-                {{-- <form action="{{route('posts.like',$post->id)}}" method="POST" class="inline-block">
-                    <div class="">
-                        <button class="bg-white border-0 me-0">
-                            @if ($post->likes->contains('user_id',Auth::id()))
-                            <i class="bi bi-heart-fill text-danger fs-5"></i>
-                            @else
-                            <i class="bi bi-heart fs-5"></i>
-                            @endif
-                        </button>
-                        <span class="text-black-50">{{$post->likes->count()}} likes</span>
-                    </div>
-                </form> --}}
-                <button class="bg-white border-0 me-0"
+                <button class="bg-transparent border-0 me-0 text-secondary-emphasis"
                     onclick="makeRequestForPostLike(document.getElementsByName('_token')[0].value,{{$post->id}})">
                     @if ($post->likes->contains('user_id',Auth::id()))
-                    <i class="bi bi-heart-fill fs-5 heart-sign-{{$post->id}}"></i>
+                    <i class="bi bi-heart-fill text-danger fs-5 heart-sign-{{$post->id}}"></i>
                     @else
                     <i class="bi bi-heart fs-5 heart-sign-{{$post->id}}"></i>
                     @endif
                 </button>
-                <span class="text-black-50" id="likes-count-{{$post->id}}">{{$post->likes->count()}}</span><span
-                    class="text-black-50"> likes</span>
+                <span class="text-body-secondary" id="likes-count-{{$post->id}}">{{$post->likes->count()}}</span><span
+                    class="text-body-secondary">
+                    likes</span>
             </div>
             <div class="me-3">
                 <i class="bi bi-chat fs-5 me-1"></i>
-                <span class="text-black-50">{{$post->comments->count()}} comments</span>
+                <span class="text-body-secondary">{{$post->comments->count()}} comments</span>
             </div>
         </div>
         <hr>
@@ -142,10 +133,11 @@
             @endforeach
         </div>
 
-        <p class="text-black-50" style="cursor: pointer" id="VMC{{$post->id}}" onclick="viewComments({{$post->id}})">
+        <p class="text-body-secondary" style="cursor: pointer" id="VMC{{$post->id}}"
+            onclick="viewComments({{$post->id}})">
             View more comments <i class="bi bi-caret-down-fill"></i>
         </p>
-        <p class="text-black-50 d-none" style="cursor: pointer" id="HC{{$post->id}}"
+        <p class="text-body-secondary d-none" style="cursor: pointer" id="HC{{$post->id}}"
             onclick="hideComments({{$post->id}})">
             Hide comments <i class="bi bi-caret-up-fill"></i></p>
         @endif
@@ -155,10 +147,3 @@
         <x-comment-form :post="$post" />
     </div>
 </div>
-{{-- @push('scripts')
-<script type="module">
-    // const token= document.getElementsByName('_token')[0].value
-
-    // makeRequestForPostLike(token,100)
-</script>
-@endpush --}}

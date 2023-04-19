@@ -4,14 +4,15 @@
     <div class="border-start px-3 w-100 mb-1" style="text-align: justify">
         <div class="d-flex justify-content-between">
             <h6 class="mb-0">
-                <a href="{{route('users.show',$comment->user->username)}}" class="text-decoration-none text-black">
+                <a href="{{route('users.show',$comment->user->username)}}"
+                    class="text-decoration-none text-dark-emphasis">
                     {{$comment->user->name}}
                 </a>
             </h6>
-            <small class="text-black-50 mb-0 d-block"
+            <small class="text-body-secondary mb-0 d-block"
                 style="font-size: 12px">{{$comment->created_at->diffForHumans()}}</small>
         </div>
-        <span class="" style="font-size: 14px">
+        <span class="text-body" style="font-size: 14px">
             {{$comment->body}}
         </span>
     </div>

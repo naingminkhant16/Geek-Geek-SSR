@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="light">
+<html lang="en" data-bs-theme="" id="root">
 
 <head>
     <meta charset="UTF-8">
@@ -11,11 +11,11 @@
 </head>
 
 <body>
-    <div class="d-flex flex-column min-vh-100 bg-light">
+    <div class="d-flex flex-column min-vh-100 bg-dark-subtle">
 
         <x-nav />
 
-        <div class="container mt-3">
+        <div class="container mt-3 ">
             {{$slot}}
         </div>
 

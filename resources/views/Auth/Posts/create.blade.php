@@ -4,8 +4,8 @@
     <div class="">
         <div class="row justify-content-center">
             <div class="col-12 col-lg-6">
-                <div class="bg-white shadow p-4 rounded-3">
-                    <h3 class="text-black">Share Your Feelings</h3>
+                <div class="border bg-body-tertiary p-4 rounded-3">
+                    <h3 class="text-dark-emphasis">Share Your Feelings</h3>
                     <hr>
                     <form action="{{route('posts.store')}}" method="POST" id="postCreateForm"
                         enctype="multipart/form-data">
@@ -15,7 +15,7 @@
                                 is-invalid
                                 @enderror" placeholder="What's on your mind today?...">{{old('status')}}</textarea>
                             @error('status')
-                            <small class="text-danger">*{{$message}}</small>
+                            <small class="text-danger-emphasis">*{{$message}}</small>
                             @enderror
                         </div>
                         <div class="mb-3">
@@ -23,7 +23,7 @@
                                 is-invalid
                                 @enderror">
                             @error('photos.*')
-                            <small class="text-danger">*{{$message}}</small>
+                            <small class="text-danger-emphasis">*{{$message}}</small>
                             @enderror
                         </div>
                         <div class="d-flex justify-content-center flex-column align-items-center"

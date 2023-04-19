@@ -9,11 +9,12 @@
         "laravel-vite-plugin": "^0.6.0",
         "lodash": "^4.17.19",
         "postcss": "^8.1.14",
+        "sass": "^1.62.0",
         "vite": "^3.0.0"
     },
     "dependencies": {
         "animate.css": "^4.1.1",
-        "bootstrap":"^5.3.0-alpha1",
+        "bootstrap": "^5.3.0-alpha1",
         "bootstrap-icons": "^1.9.1",
         "chart.js": "^4.1.1",
         "sweetalert2": "^11.6.10",

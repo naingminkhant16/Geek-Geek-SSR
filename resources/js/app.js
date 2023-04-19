@@ -52,3 +52,6 @@ import "./admin/charts";
 
 //invoke post-like handler function
 import "./likePost";
+
+//handle dark light mode
+import "./handleDarkLightMode"

@@ -4,9 +4,9 @@
     </x-slot:title>
     <div class="row justify-content-center align-items-center mt-5">
         <div class="col-12 col-lg-5 mt-0 mt-lg-5">
-            <div class="bg-white shadow d-flex align-items-center justify-content-center rounded-3 p-4 p-lg-5 ">
+            <div class="border bg-body-tertiary d-flex align-items-center justify-content-center rounded-3 p-4 p-lg-5 ">
                 <div class="" style="">
-                    <h3 class="text-center mb-4">Be Ready To <span
+                    <h3 class="text-center text-dark-emphasis mb-4">Be Ready To <span
                             class="text-white border p-2 rounded-3 bg-primary border-0 m-1">Geek</span>.
                         Login Now!
                     </h3>
@@ -22,7 +22,8 @@
                         </div>
                     </form>
                     <div class="text-center">
-                        <small class="">No Account? <a href="{{route('register')}}" class="text-primary ">Register</a>
+                        <small class=" text-body-secondary">No Account? <a href="{{route('register')}}"
+                                class="text-primary ">Register</a>
                             Now.
                             <a href="{{route('password.request')}}" class="text-primary ">
                                 Forgot Password?

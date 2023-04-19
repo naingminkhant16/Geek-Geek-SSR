@@ -6,14 +6,14 @@
     <div class="">
         <div class="row justify-content-center">
             <div class="col-12 col-lg-6 ">
-                <div class=" bg-white shadow p-3 rounded-3">
+                <div class="border bg-body-tertiary p-3 rounded-3 mb-3">
 
                     <div class="d-flex align-items-center mb-3">
                         <x-avatar :path="$post->user->profile" />
                         <div class="d-flex flex-column justify-content-center mt-2">
                             <h6 class="mb-1"><a href="{{route('users.show',$post->user->username)}}"
-                                    class="text-decoration-none text-black">{{$post->user->name}}</a></h6>
-                            <small class="text-black-50">{{$post->created_at->diffForHumans()}}</small>
+                                    class="text-decoration-none text-dark-emphasis">{{$post->user->name}}</a></h6>
+                            <small class="text-body-secondary">{{$post->created_at->diffForHumans()}}</small>
                         </div>
                     </div>
                     <form action="{{route('posts.update',$post->id)}}" method="POST" id="postEditForm" class="mb-3"
@@ -59,7 +59,7 @@
                         <x-modal id="photoDeleteConfirmModal{{$photo->id}}">
                             <div class="text-center">
                                 <h5>Are u sure u want to delete?</h5>
-                                <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">No</button>
+                                <button type="button" class="btn btn-dark" data-bs-dismiss="modal">No</button>
                                 <button form="photoDeleteForm{{$photo->id}}" type="submit"
                                     class="btn btn-danger">Yes</button>
                             </div>

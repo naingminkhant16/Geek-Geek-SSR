@@ -25,10 +25,13 @@ window.makeRequestForPostLike = function (_token, post_id) {
             if (res.msg === "like") {
                 heartSign.classList.remove('bi-heart')
                 heartSign.classList.add('bi-heart-fill')
+                heartSign.classList.add('text-danger')
                 likesCount.innerHTML = parseInt(likesCount.innerHTML) + 1
             } else if (res.msg === 'unlike') {
                 heartSign.classList.remove('bi-heart-fill')
                 heartSign.classList.add('bi-heart')
+                heartSign.classList.remove('text-danger')
+
                 likesCount.innerHTML = parseInt(likesCount.innerHTML) - 1
             }
         })

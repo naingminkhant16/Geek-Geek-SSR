@@ -4,9 +4,9 @@
     </x-slot:title>
     <div class="row justify-content-center">
         <div class="col-12 col-lg-5">
-            <div class="bg-white shadow rounded-3 p-4 p-lg-5">
+            <div class="bg-body-tertiary rounded-3 p-4 p-lg-5">
                 <div class="" style="">
-                    <h3 class="text-center mb-4">
+                    <h3 class="text-center mb-4 text-dark-emphasis">
                         Reset Password
                     </h3>
                     <hr>
@@ -22,7 +22,7 @@
                             <x-button label="Submit" color="primary" />
                         </div>
                     </form>
-                    <div class="text-center">
+                    <div class="text-center text-body-secondary">
                         <small class="">Enter Your Mail Address</small>
                     </div>
                     <hr>

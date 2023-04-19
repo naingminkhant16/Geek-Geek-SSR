@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="col-12 col-lg-3">
-            <div class="bg-success bg-gradient bg-opacity-75 p-4 rounded-3 shadow">
+            <div class="p-4 rounded-3 shadow" style="background-color: rgba(69, 235, 165,0.75)">
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="">
                         <h3 class="text-black-50">{{$data['Posts']->sum()}}</h3>

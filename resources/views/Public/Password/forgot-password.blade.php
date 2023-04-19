@@ -4,9 +4,9 @@
     </x-slot:title>
     <div class="row justify-content-center">
         <div class="col-12 col-lg-5">
-            <div class="bg-white shadow rounded-3 p-4 p-lg-5">
+            <div class="bg-body-tertiary rounded-3 p-4 p-lg-5">
                 <div class="" style="">
-                    <h3 class="text-center mb-4">
+                    <h3 class="text-center mb-4 text-dark-emphasis">
                         Forgot Password
                     </h3>
                     <hr>
@@ -24,7 +24,7 @@
                         </div>
                     </form>
                     <div class="text-center">
-                        <small class="">Enter Your Mail Address Or <a href="{{route('login')}}"
+                        <small class="text-body-secondary">Enter Your Mail Address Or <a href="{{route('login')}}"
                                 class=" text-primary">Login</a></small>
                     </div>
                     <hr>

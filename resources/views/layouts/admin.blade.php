@@ -14,7 +14,7 @@
     <div class="">
         <div class="row g-0">
             <div class="d-none d-lg-block col-12 col-lg-2">
-                <div class="bg-secondary min-vh-100 text-white">
+                <div class="bg-dark min-vh-100 text-white">
                     <div class="row vh-100">
                         <div class="col-lg-12">
                             <div class="text-center mt-4">
@@ -58,7 +58,7 @@
                                 <span class="navbar-toggler-icon"></span>
                             </button>
 
-                            <div class="offcanvas offcanvas-start bg-secondary" tabindex="-1" id="offcanvasExample"
+                            <div class="offcanvas offcanvas-start bg-dark" tabindex="-1" id="offcanvasExample"
                                 aria-labelledby="offcanvasExampleLabel">
                                 <div class="offcanvas-header">
                                     <h5 class="offcanvas-title text-white" id="offcanvasExampleLabel"></h5>
@@ -66,7 +66,7 @@
                                         aria-label="Close" />
                                 </div>
                                 <div class="offcanvas-body">
-                                    <div class="bg-secondary text-white mt-5">
+                                    <div class="bg-dark text-white mt-5">
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="text-center w-100">

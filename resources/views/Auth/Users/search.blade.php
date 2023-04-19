@@ -5,19 +5,16 @@
         <div class="row justify-content-center">
             <div class="col-12 col-lg-6">
                 <div class="mb-3">
-                    <x-people-you-may-know-card :people="$users" title="Users related with '{{request('search')}}'" />
+                    <x-people-you-may-know-card :people="$users" title="Result related with '{{request('search')}}'" />
                 </div>
                 <div class="">
                     <div class="mb-3">
-                        <div class="mb-3 bg-white p-2 rounded-3">
-                            <h5 class="mb-0">Posts related with '{{request('search')}}'</h5>
-                            <hr class="">
-                        </div>
+
                         @forelse ($posts as $post)
                         <x-post-card :post="$post"></x-post-card>
 
                         @empty
-                        <div class="text-center text-black-50">
+                        <div class="text-center text-body-secondary">
                             No Posts!
                         </div>
                         @endforelse

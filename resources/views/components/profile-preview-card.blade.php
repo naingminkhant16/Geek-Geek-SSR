@@ -1,8 +1,8 @@
 @props(['user'=>Auth::user()])
-<div class="border rounded-3 p-3 bg-white shadow">
+<div class="border bg-body-tertiary rounded-3 p-3">
     <div class="d-flex justify-content-end">
         @can('update-user',$user)
-        <a href="{{route('users.edit',$user->username)}}"><i class="bi bi-pencil-fill"></i></a>
+        <a href="{{route('users.edit',$user->username)}}"><i class="bi bi-pencil-fill text-primary"></i></a>
         @endcan
     </div>
     <div class="d-flex justify-content-center flex-column">
@@ -14,24 +14,24 @@
                 </a>
             </div>
             <h4 class="mb-0">
-                <a href="{{route('users.show',$user->username)}}" class="text-decoration-none text-black">
+                <a href="{{route('users.show',$user->username)}}" class="text-decoration-none text-dark-emphasis">
                     {{$user->name}}
                 </a>
             </h4>
             <small class="">"{{$user->bio??'No Bio'}}"</small><br>
-            <small class="text-black-50">Joined On {{$user->created_at->format('M, Y')}}.</small><br>
+            <small class="text-body-secondary">Joined On {{$user->created_at->format('M, Y')}}.</small><br>
         </div>
         <hr>
         <div class="d-flex justify-content-between">
             <div class="text-center w-50">
-                <h4 class=""> {{$user->followers->count()}}</h4>
+                <h4 class="text-dark-emphasis"> {{$user->followers->count()}}</h4>
                 <a href="{{route('users.followers',$user->username)}}" class="text-decoration-none">
-                    <small class="text-black-50"><i class="bi bi-people-fill"></i> Followers</small></a>
+                    <small class="text-body-secondary"><i class="bi bi-people-fill"></i> Followers</small></a>
             </div>
             <div class="text-center border-start w-50">
-                <h4 class=""> {{$user->followings->count()}}</h4>
+                <h4 class="text-dark-emphasis"> {{$user->followings->count()}}</h4>
                 <a href="{{route('users.followings',$user->username)}}" class="text-decoration-none">
-                    <small class="text-black-50"><i class="bi bi-person-check-fill"></i> Following</small>
+                    <small class="text-body-secondary"><i class="bi bi-person-check-fill"></i> Following</small>
                 </a>
             </div>
         </div>
