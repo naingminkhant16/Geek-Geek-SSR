@@ -1,20 +1,33 @@
-const circle = document.getElementById('dark-light-circle')
-const root = document.getElementById('root')
+const circle = document.getElementById('dark-light-circle');
+const root = document.getElementById('root');
 
 //get initial localStorage theme value
-const theme = localStorage.getItem('theme') ? localStorage.getItem('theme') : 'dark'
+const localStorageTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : 'dark';
 
-//set theme depend on localStorage every time page is reload
-root.setAttribute('data-bs-theme', theme)
-
+//set root theme depend on localStorage theme every time page is reload
+root.setAttribute('data-bs-theme', localStorageTheme);
 
 circle.addEventListener('click', function (e) {
-    e.preventDefault()
+    e.preventDefault();
 
-    if (root.getAttribute('data-bs-theme') == "light") {
-        localStorage.setItem("theme", "dark")
-    } else if (root.getAttribute('data-bs-theme') == "dark") {
-        localStorage.setItem("theme", "light")
+    //get root theme
+    const rootTheme = root.getAttribute('data-bs-theme');
+
+    let newTheme = '';
+
+    switch (rootTheme) {
+        case 'light':
+            newTheme = 'dark';
+            break;
+        case 'dark':
+            newTheme = 'light';
+            break;
+        default:
+            newTheme = 'dark';
     }
-    root.setAttribute('data-bs-theme', localStorage.getItem('theme'))
+
+    //set new localstorage theme
+    localStorage.setItem("theme", newTheme);
+    //set new root theme
+    root.setAttribute('data-bs-theme', newTheme);
 })
