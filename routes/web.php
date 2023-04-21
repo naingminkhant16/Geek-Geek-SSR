@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminEmailReplyController;
 use App\Http\Controllers\AdminPostController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\OAuthController;
@@ -57,6 +58,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/search', [UserController::class, 'search'])->name('users.search');
     Route::get('/users/{user:username}/edit', [UserController::class, 'edit'])->name('users.edit');
     Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
+
+    //change password
+    Route::get('/change-password', [ChangePasswordController::class, 'index'])->name('users.changePassword.index');
+    Route::post('/change-password', [ChangePasswordController::class, 'change'])->name('users.changePassword.change');
 });
 
 //Public Routes

@@ -22,6 +22,12 @@
                             Profile
                         </a>
                     </li>
+                    <li class="">
+                        <a href="{{route('users.changePassword.index')}}" class="dropdown-item">
+                            <i class="bi bi-gear-fill"></i>
+                            Change Password
+                        </a>
+                    </li>
                     @if (auth()->user()->is_admin)
                     <li class="">
                         <a href="{{route('dashboard.index')}}" class="dropdown-item">
@@ -57,8 +63,6 @@
 {{-- //offcanvas --}}
 <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
     <div class="offcanvas-header">
-        {{-- <a class="offcanvas-title mt-2 text-decoration-none" href="/">
-            <span class="text-white-emphasis m-1">Geek</span></a> --}}
         <div></div>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
@@ -83,6 +87,14 @@
                     </a>
                 </div>
                 @endif
+                <div class="mb-3">
+                    <a href="{{route('users.changePassword.index')}}" class="@if(request()->routeIs('users.changePassword.index')) text-primary @else
+                        text-secondary-emphasis @endif text-decoration-none">
+                        <i class=" bi bi-gear-fill"></i>
+                        Change Password
+                    </a>
+                </div>
+
                 <div class="mb-3">
                     <a href="{{route('users.followers',auth()->user()->username)}}"
                         class="@if(request()->routeIs('users.followers',auth()->user()->username))text-primary @else  text-secondary-emphasis  @endif text-decoration-none">
