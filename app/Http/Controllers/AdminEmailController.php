@@ -18,7 +18,7 @@ class AdminEmailController extends Controller
                 ->orWhere("body", "LIKE", "%$search%");
         })->with(['user'])
             ->latest()
-            ->paginate(6)
+            ->paginate(5)
             ->withQueryString();
 
         return view('Admin.Email.index', ['emails' => $emails]);

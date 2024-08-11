@@ -6,7 +6,7 @@
     <div class="d-flex align-items-center justify-content-between border-bottom mb-3 pb-3">
         <div class="d-flex justify-content-start align-items-center">
             <x-avatar :path="$person->profile" width="28" />
-            <div class="d-flex flex-column justify-content-center mt-2">
+            <div class="ms-2 d-flex flex-column justify-content-center mt-2">
                 <h6 class="mb-0">
                     <a href="{{route('users.show',$person->username)}}"
                         class="text-decoration-none  text-dark-emphasis">

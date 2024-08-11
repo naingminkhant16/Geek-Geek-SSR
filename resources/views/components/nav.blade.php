@@ -13,7 +13,7 @@
             </div>
             <div class="dropdown d-none d-lg-block">
                 <div class="" data-bs-toggle="dropdown">
-                    <x-avatar :path="Auth::user()->profile" />
+                    <x-avatar :path="Auth::user()->profile" width="36" />
                 </div>
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
                     <li class="">

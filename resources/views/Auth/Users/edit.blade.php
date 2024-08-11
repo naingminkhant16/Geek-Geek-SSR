@@ -1,7 +1,7 @@
 <x-layout>
     <x-slot:title>{{$user->name}}</x-slot:title>
     <x-breadcrumb :links="$breadcrumb_links" />
-    <div class="">
+    <div class="mb-3">
         <div class="row justify-content-center">
             <div class="col-12 col-lg-6">
                 <div class="border bg-body-tertiary rounded-3 p-3 ">

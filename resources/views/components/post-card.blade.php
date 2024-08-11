@@ -2,8 +2,8 @@
 <div class="bg-body-tertiary border rounded-3 mb-3 p-3">
     <div class="d-flex justify-content-between align-items-center mb-3">
         <div class="d-flex align-items-center">
-            <x-avatar :path="$post->user->profile" />
-            <div class="d-flex flex-column justify-content-center mt-2">
+            <x-avatar :path="$post->user->profile" width="42"/>
+            <div class="d-flex flex-column justify-content-center mt-2 ms-2">
                 <h6 class="mb-1"><a href="{{route('users.show',$post->user->username)}}"
                         class="text-decoration-none text-dark-emphasis">{{$post->user->name}}</a></h6>
                 <small class="text-secondary-emphasis">{{$post->created_at->diffForHumans()}}</small>
@@ -98,7 +98,7 @@
             <div class="me-3">
                 @csrf
                 <button class="bg-transparent border-0 me-0 text-secondary-emphasis"
-                    onclick="makeRequestForPostLike(document.getElementsByName('_token')[0].value,{{$post->id}})">
+                    onclick="makeRequestForPostLike(document.getElementsByName('_token')[0].value,{{$post->id}},{{auth()->id()}})">
                     @if ($post->likes->contains('user_id',Auth::id()))
                     <i class="bi bi-heart-fill text-danger fs-5 heart-sign-{{$post->id}}"></i>
                     @else

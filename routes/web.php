@@ -27,6 +27,7 @@ Route::get('/auth/callback/google', [OAuthController::class, 'googleCallback']);
 Route::get('/auth/redirect/github', [OAuthController::class, 'githubRedirect'])->name('githubRedirect');
 Route::get('/auth/callback/github', [OAuthController::class, 'githubCallback']);
 
+Route::post('/posts/like/{post}/{user_id}', [PostController::class, 'handleLikePost'])->name('posts.like');
 
 //Auth Routes
 Route::middleware(['auth'])->group(function () {
@@ -34,7 +35,6 @@ Route::middleware(['auth'])->group(function () {
 
     //posts
     Route::resource('/posts', PostController::class);
-    Route::post('/posts/like/{post}', [PostController::class, 'handleLikePost'])->name('posts.like');
 
     //report post
     Route::post('/posts/report', [PostController::class, 'report'])->name('posts.report');
@@ -157,6 +157,6 @@ Route::get('/contact-us', [ContactController::class, 'index'])->name('contact-us
 Route::post('/contact-us', [ContactController::class, 'store'])->name('contact-us.store');
 
 //About Me
-Route::get('/about-me', function () {
+Route::get('/developer-profile', function () {
     return view('Public.about');
 })->name('about-me');

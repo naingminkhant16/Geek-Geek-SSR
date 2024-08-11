@@ -1,5 +1,5 @@
-window.makeRequestForPostLike = function (_token, post_id) {
-    const url = `http://127.0.0.1:8000/posts/like/${post_id}`
+window.makeRequestForPostLike = function (_token, post_id,user_id) {
+    const url = `http://127.0.0.1:8000/posts/like/${post_id}/${user_id}`
 
     fetch(url, {
             method: "POST",
@@ -7,7 +7,7 @@ window.makeRequestForPostLike = function (_token, post_id) {
                 "Content-Type": "application/json",
                 "Accept": "application/json",
                 "X-Requested-With": "XMLHttpRequest",
-                "X-CSRF-Token": _token,
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
             },
             credentials: "same-origin",
         })

@@ -2,7 +2,7 @@
     <x-slot:title>
         Contact Us
     </x-slot:title>
-    <div class="border bg-body-tertiary rounded-3 p-4 p-lg-5 mt-0 mt-lg-5 mb-3">
+    <div class="border bg-body-tertiary rounded-3 p-4 p-lg-5 mt-0 mb-3">
         <h2 class="text-center text-dark-emphasis">Contact Us</h2>
         <p class="text-center text-body-secondary">Any question or remarks? Just leave a message.</p>
 
@@ -15,9 +15,9 @@
                         <hr>
                     </div>
                     <div class="text-body-secondary">
-                        <p class="mb-5"><i class="bi bi-telephone-fill me-3"></i> +959 123 456 789</p>
+                        <p class="mb-5"><i class="bi bi-telephone-fill me-3"></i> +959 952 128 314</p>
                         <p class="mb-5"><i class="bi bi-envelope-fill me-3"></i> tharkhant777@gmail.com</p>
-                        <p class="mb-5"><i class="bi bi-geo-alt-fill me-3"></i> South Okkalapa Township, Yangon, Myanmar
+                        <p class="mb-5"><i class="bi bi-geo-alt-fill me-3"></i> Yangon, Myanmar
                         </p>
                     </div>
                     <div class="">

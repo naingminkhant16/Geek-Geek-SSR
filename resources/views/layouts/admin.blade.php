@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Admin | @yield('title')</title>
+    <title>@yield('title') | Admin Dashboard</title>
     <link rel="icon" href="https://nmk.netlify.app/img/nmk.2d1e47b7.png">
     @vite('resources/js/app.js')
 </head>

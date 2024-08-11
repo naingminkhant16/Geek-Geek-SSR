@@ -1,7 +1,7 @@
 @props(['post'])
 <div class="d-flex align-items-center">
-    <div>
-        <x-avatar :path="Auth::user()->profile" width="38" />
+    <div class="me-2">
+        <x-avatar :path="Auth::user()->profile" width="34" />
     </div>
     <div class="w-100">
         <form action="{{route('comments.store',$post)}}" id="comment{{$post->id}}" class="d-flex" method="POST">

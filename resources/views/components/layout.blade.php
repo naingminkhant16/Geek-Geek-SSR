@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Geek Geek | {{$title}}</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{$title}} | Geek</title>
     <link rel="icon" href="https://nmk.netlify.app/img/nmk.2d1e47b7.png">
     @vite('resources/js/app.js')
 </head>

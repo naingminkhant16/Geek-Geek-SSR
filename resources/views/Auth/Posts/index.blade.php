@@ -14,11 +14,11 @@
                 <div class="d-flex justify-content-center">
                     <div class="w-100 overflow-auto px-lg-3" style="height: 820px">
                         <div class="bg-body-tertiary p-3 rounded-3 border w-100 mb-3">
-                            <h6 class="border-bottom pb-2 mb-2 text-dark-emphasis">Post Something</h6>
+                            <h6 class="border-bottom pb-2 mb-2 text-dark-emphasis">Share Something</h6>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
                                     <x-avatar :path="Auth::user()->profile" />
-                                    <span class="text-body-secondary" onclick="">
+                                    <span class="ms-2 text-body-secondary" onclick="">
                                         What's on your mind today?</span>
                                 </div>
                                 <a href="{{route('posts.create')}}" class="btn btn-primary text-white">

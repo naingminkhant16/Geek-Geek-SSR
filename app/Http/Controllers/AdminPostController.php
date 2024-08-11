@@ -40,15 +40,14 @@ class AdminPostController extends Controller
                         $query->where('name', 'LIKE', "%$search%");
                     });
             });
-        })->with([
-            'user', 'photos', 'reportedPosts'
-        ])
+        })
             ->orWhereHas('user', function ($query) {
                 //if user is deleted temporarily deleted, his posts will not be shown
                 $query->where('deleted_at', NULL);
             })
             ->onlyTrashed()
             ->latest()
+            ->with(['user', 'photos', 'reportedPosts'])
             ->paginate(6);
 
         return view('Admin.Post.deletedPosts', [

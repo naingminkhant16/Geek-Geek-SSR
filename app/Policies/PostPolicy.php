@@ -12,8 +12,8 @@ class PostPolicy
 
     public function before(User $user)
     {
-        if ($user->is_admin)
-            return true;
+//        if ($user->is_admin)
+//            return true;
     }
 
     /**

@@ -75,15 +75,14 @@
                         </p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="">
-                                <a href="{{route('posts.edit',$post->id)}}"
-                                    class="text-decoration-none btn btn-sm btn-primary me-1">
-                                    <i class="bi bi-pencil-fill text-white"></i>
-                                </a>
+{{--                                <a href="{{route('posts.edit',$post->id)}}"--}}
+{{--                                    class="text-decoration-none btn btn-sm btn-primary me-1">--}}
+{{--                                    <i class="bi bi-pencil-fill text-white"></i>--}}
+{{--                                </a>--}}
                                 <a href="{{route('posts.show',$post->id)}}" target="_blank"
-                                    class="text-decoration-none btn btn-sm btn-success me-1">
+                                    class="text-decoration-none btn btn-sm btn-info me-1">
                                     <i class="bi bi-eye-fill text-white"></i>
                                 </a>
-
 
                                 {{-- to see reported msg with modal box --}}
                                 @if ($post->reportedPosts->count())
@@ -114,7 +113,8 @@
                                 </form>
                                 <button form="deletePost{{$post->id}}" type="submit"
                                     class="text-decoration-none btn btn-sm btn-danger me-1">
-                                    <i class="bi bi-trash-fill text-white"></i>
+{{--                                    <i class="bi bi-trash-fill text-white"></i>--}}
+                                    <i class="bi bi-slash-circle"></i>
                                 </button>
                             </div>
                             <div class="text-center">

@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Notifications\GetLike;
 use App\Notifications\PostCreated;
 use App\Notifications\PostReported;
+use http\Env\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Notification;
@@ -197,9 +198,10 @@ class PostController extends Controller
         return redirect()->route('home')->with('success', 'Your post is successfully deleted.');
     }
 
-    public function handleLikePost(Post $post)
+    public function handleLikePost(Post $post,$user_id)
     {
-        $like =  Like::where('user_id', Auth::id())
+
+        $like =  Like::where('user_id', $user_id)
             ->where('post_id', $post->id)->first();
 
         if ($like) {
@@ -207,7 +209,7 @@ class PostController extends Controller
             $msg = "unlike";
         } else {
             $like = Like::create([
-                'user_id' => Auth::id(),
+                'user_id' => Auth::id()??$user_id,
                 'post_id' => $post->id
             ]);
             $msg = "like";

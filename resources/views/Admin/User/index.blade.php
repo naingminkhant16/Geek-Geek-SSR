@@ -73,12 +73,12 @@
                                 @endif
                             </td>
                             <td class="">
-                                <a href="{{route('users.edit',$user->username)}}"
-                                    class="text-decoration-none btn btn-sm btn-primary me-1">
-                                    <i class="bi bi-pencil-fill text-white"></i>
-                                </a>
+{{--                                <a href="{{route('users.edit',$user->username)}}"--}}
+{{--                                    class="text-decoration-none btn btn-sm btn-primary me-1">--}}
+{{--                                    <i class="bi bi-pencil-fill text-white"></i>--}}
+{{--                                </a>--}}
                                 <a href="{{route('users.show',$user->username)}}"
-                                    class="text-decoration-none btn btn-sm btn-success me-1">
+                                    class="text-decoration-none btn btn-sm btn-info me-1">
                                     <i class="bi bi-eye-fill text-white"></i>
                                 </a>
                                 @if ($user->id !==auth()->id())
@@ -89,8 +89,9 @@
                                 </form>
                                 <button form="deleteUser{{$user->id}}" type="submit"
                                     class="text-decoration-none btn btn-sm btn-danger me-1">
-                                    <i class="bi bi-trash-fill text-white"></i>
-                                </button>
+{{--                                    <i class="bi bi-trash-fill text-white"></i>--}}
+                                    <i class="bi bi-slash-circle"></i>
+                                    </button>
                                 @endif
                             </td>
                         </tr>

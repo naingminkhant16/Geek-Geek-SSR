@@ -1,2 +1,2 @@
-<img src="{{asset('storage/'.$path)}}" class="rounded rounded-circle me-2 img-fluid" width="{{$width??'46'}}"
+<img src="{{asset('storage/'.$path)}}" class="rounded-circle  img-fluid"  width="{{$width??'46'}}"
     alt="profile">

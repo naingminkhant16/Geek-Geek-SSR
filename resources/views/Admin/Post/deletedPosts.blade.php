@@ -86,6 +86,7 @@
 
                                 {{-- to see reported msg with modal box --}}
                                 @if ($post->reportedPosts->count())
+{{--                                    @dd($post->reportedPosts->count())--}}
                                 <button type="button" data-bs-toggle="modal" data-bs-target="#reportInfo{{$post->id}}"
                                     class="btn btn-danger btn-sm text-white"><i
                                         class="bi bi-exclamation-triangle-fill"></i></button>
